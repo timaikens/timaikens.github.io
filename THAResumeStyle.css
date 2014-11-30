@@ -1,0 +1,148 @@
+/* --- CSS FILE: THA RESUME --- */
+
+/** {border:1px dashed hotpink;}*/
+
+html, body {
+	margin:0;
+	padding:0;
+	background-color:#FFFFFF;
+	height:2000px;
+}
+
+#topnav a {
+	transition-duration:0.3s;
+	-webkit-transition-duration:0.3s;
+	-moz-transition-duration:0.3s;
+	-ms-transition-duration:0.3s;
+	-o-transition-duration:0.3s;
+}
+
+
+/* --- HEADER --- */
+
+
+#headerback, #headerwrapper {
+	display:block;
+	position:fixed;
+	left:0;
+	width:100%;
+}
+
+#headerback {
+	top:0;
+	height:100px;
+	background-color:#FFFFFF;
+	opacity:0.3;
+}
+
+#headerwrapper {
+	top:25px;
+	height:50px;
+}
+
+#topnav {
+	list-style-type: none;
+	float:right;
+	margin:0 5% 0 0;
+	padding:0;
+	height:100%;
+}
+
+#topnav li {
+	float:left;
+	padding:0;
+	margin:0;
+}
+
+#topnav a {
+	text-decoration:none;
+	color:#FFFFFF;
+	font-family:Futura, Helvetica, sans-serif;
+	font-size:1em;
+	font-weight:bold;
+	padding:5px 10px;
+	margin:0;
+	line-height:50px;
+}
+
+#topnav a:hover {
+	color:#D9EAF5;
+}
+
+
+/* --- END HEADER --- */
+
+
+.bigsplash {
+	width:100%;
+	height:900px;
+	background:#FFFFFF url('HaleInsta.jpg') no-repeat center;
+	background-size:cover;
+}
+
+.about {
+
+}
+
+.portfolio {
+
+}
+
+.contact {
+
+}
+
+
+
+
+
+
+#totop {
+	position:fixed;
+	right:50px;
+	height:50px;
+	width:50px;
+	background-color:#41464A;
+	border-radius:10px;
+	text-decoration:none;
+	color:#FFFFFF;
+	text-align:center;
+	line-height:50px;
+	transition:opacity 0.3s;
+	-webkit-transition:opacity 0.3s;
+	-moz-transition:opacity 0.3s;
+	-ms-transition:opacity 0.3s;
+	-o-transition:opacity 0.3s;
+}
+
+#totop:hover {
+	opacity:1;
+}
+
+.uptriangle {
+	content:"";
+	height:0;
+	width:0;
+	position:absolute;
+	top:17px;
+	left:13px;
+	border-top:0 solid transparent;
+	border-bottom:11px solid #FFFFFF;
+	border-right:12px solid transparent;
+	border-left:12px solid transparent;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
