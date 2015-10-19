@@ -1,36 +1,166 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
+
+	<title>Tim Aikens, Web Design/Development</title>
+
+	<meta charset="utf-8" />
+	<meta name="description" content="Hi, I'm Tim and I make web stuff!" />
+	<meta name="keywords" content="Tim Aikens, creative, web, design, web design, web development, front-end, front end, front-end development, front end development, designer, developer, html, html5, css, css3, js, javascript, graphic design, graphic designer" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway' rel='stylesheet' type='text/css'>
+
+	<link rel="icon" type="image/png" href="favicon-32.png">
+
+<style>
+
+html {
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+
+*, *:before, *:after {
+	-webkit-box-sizing:inherit;
+	-moz-box-sizing:inherit;
+	box-sizing:inherit;
+}
+
+html, body {
+	width:100%;
+	height:100%;
+	margin:0;
+	padding:0;
+	font-size:1em;
+	background-color:#FFFFF5;
+}
+
+a {
+	text-decoration:none;
+}
+
+.td3 {
+	-webkit-transition-duration:0.3s;
+	-moz-transition-duration:0.3s;
+	-o-transition-duration:0.3s;
+	transition-duration:0.3s;
+}
+
+.mobile-only {display:none;}
+
+#centering-wrap {
+	position:absolute;
+	top:50%;
+	left:50%;
+	-webkit-transform:translate(-50%,-50%);
+	-moz-transform:translate(-50%,-50%);
+	-ms-transform:translate(-50%,-50%);
+	-o-transform:translate(-50%,-50%);
+	transform:translate(-50%,-50%);
+	text-align:center;
+}
+
+#site-heading {
+	font-family:'Montserrat', sans-serif;
+	font-weight:bold;
+	font-size:3em;
+	color:#F0544F;
+}
+
+#site-subheading {
+	font-family: 'Raleway', sans-serif;
+	font-style:italic;
+	font-size:1.2em;
+	color:#3A3335;
+}
+
+#links-wrap {
+	margin-top:50px;
+}
+
+#links-list {
+	list-style-type:none;
+	padding:0;
+	font-family:'Montserrat', sans-serif;
+	font-size:2em;
+}
+
+#links-list span {
+	display:block;
+	margin-bottom:15px;
+	color:#3A3335;
+}
+
+#links-list li a {
+	position:relative;
+	font-size:0.75em;
+	color:#91A99F;
+}
+
+#links-list li a:before, #links-list li a:after {
+	content:"";
+	position:absolute;
+	bottom:-0.16em;
+	height:4px;
+	width:0;
+	background-color:#F0544F;
+	-webkit-transition-duration:inherit;
+	-moz-transition-duration:inherit;
+	-o-transition-duration:inherit;
+	transition-duration:inherit;
+}
+
+#links-list li a:before {left:50%;}
+#links-list li a:after {right:50%;}
+#links-list li a:hover:before, #links-list li a:hover:after {width:50%;}
+
+@media (max-width:650px) {
+
+	.mobile-only {display:initial;}
 	
-	<link type="text/css" rel="stylesheet" href="THAResumeStyle.css" />
+	#centering-wrap {width:100%;padding:0 1em;}
+
+	#site-subheading {font-size:1.1em;}
+
+	#links-list {font-size:1.9em;}
+
+}
+
+@media (max-width:480px) {
+
+	#site-heading {font-size:2.3em;}
+
+	#site-subheading {font-size:1em;}
+
+	#links-wrap {margin-top:35px;}
+
+	#links-list {font-size:1.5em;}
+
+	#links-list li {padding:4px 0;}
+
+	#links-list li a {font-size:0.9em;}
+
+}
+
+</style>
 	
 </head>
 <body>
 
-	<div id="headerback"></div>
-	<div id="headerwrapper">
-		<ul id="topnav">
-			<li><a href="#">ABOUT</a></li>
-			<li><a href="#">PORTFOLIO</a></li>
-			<li><a href="#">CONTACT</a></li>
+<div id="centering-wrap">
+	<h1 id="site-heading">Tim Aikens, <br class="mobile-only" />web design/<br class="mobile-only" />development</h1>
+	<p id="site-subheading">Full site under construction. <br class="mobile-only" />In the meantime...</p>
+	<div id="links-wrap">
+		<ul id="links-list"><span>Get to know me here:</span>
+			<li><a href="https://www.linkedin.com/pub/tim-aikens/107/b93/804" class="td3">LinkedIn</a></li>
+			<li><a href="http://codepen.io/timaikens/pens/public/" class="td3">Codepen</a></li>
+			<li><a href="http://timaikens.tumblr.com/" class="td3">Tumblr</a></li>
+			<li><a href="https://instagram.com/timmyyes/" class="td3">Instagram</a></li>
 		</ul>
 	</div>
+</div>
 
-	<div class="bigsplash">
-
-	</div>
-	<div class="about">
-
-	</div>
-	<div class="portfolio">
-
-	</div>
-	<div class="contact">
-
-	</div>
-
-	<a id="totop" href="#" title="Let me take you higher..."><span class="uptriangle"></span></a>
-
-<script src="THAResumeJS.js"></script>
+<script></script>
 </body>
 </html>
