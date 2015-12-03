@@ -34,6 +34,7 @@ html, body {
 	padding:0;
 	font-size:1em;
 	background-color:#FFFFF5;
+	text-align:center;
 }
 
 a {
@@ -51,8 +52,11 @@ a {
 
 #centering-wrap {
 	position:absolute;
+	display:block;
+	width:100%;
 	top:50%;
 	left:50%;
+	padding:1.5em 1em;
 	-webkit-transform:translate(-50%,-50%);
 	-moz-transform:translate(-50%,-50%);
 	-ms-transform:translate(-50%,-50%);
@@ -61,53 +65,42 @@ a {
 	text-align:center;
 }
 
-#site-heading {
+@media (max-width:500px) {
+
+	#centering-wrap {
+		position:relative;
+		top:0;
+		left:0;
+		-webkit-transform:none;
+		-moz-transform:none;
+		-ms-transform:none;
+		-o-transform:none;
+		transform:none;
+	}
+
+}
+
+h1 {
 	font-family:'Montserrat', sans-serif;
 	font-weight:bold;
 	font-size:3em;
 	color:#F0544F;
+	margin-top:0;
 }
 
-#site-subheading {
-	font-family: 'Raleway', sans-serif;
+p {
+	font-family:'Raleway', sans-serif;
 	font-style:italic;
 	font-size:1.2em;
 	color:#3A3335;
 }
 
-#links-wrap {
-	margin-top:50px;
-}
-
-#links-list {
-	list-style-type:none;
-	padding:0;
-	font-family:'Montserrat', sans-serif;
-	font-size:2em;
-}
-
-#links-list span {
-	display:block;
-	margin-bottom:15px;
-	color:#3A3335;
-}
-
-#links-list span#smaller-header {
-	font-size:0.75em;
-}
-
-#links-list li {
-	font-size:0.75em;
-	color:#3A3335;
-	padding:6px 0;
-}
-
-#links-list li a {
+a {
 	position:relative;
 	color:#91A99F;
 }
 
-#links-list li a:before, #links-list li a:after {
+a:before, a:after {
 	content:"";
 	position:absolute;
 	bottom:-0.16em;
@@ -120,46 +113,11 @@ a {
 	transition-duration:inherit;
 }
 
-#links-list li a:before {left:50%;}
-#links-list li a:after {right:50%;}
-#links-list li a:hover:before, #links-list li a:hover:after {width:50%;}
+a:before {left:50%;}
+a:after {right:50%;}
 
-@media (max-width:650px) {
-
-	.mobile-only {display:initial;}
-	
-	#centering-wrap {width:100%;padding:1.5em 1em;}
-
-	#site-subheading {font-size:1.1em;}
-
-	#links-list {font-size:1.9em;}
-
-	#links-list li a:hover:before, #links-list li a:hover:after {width:0;}
-
-}
-
-@media (max-width:480px) {
-
-	#centering-wrap {
-		top:0;
-		left:0;
-		-webkit-transform:none;
-		-moz-transform:none;
-		-ms-transform:none;
-		-o-transform:none;
-		transform:none;
-	}
-
-	#site-heading {font-size:2.3em;}
-
-	#site-subheading {font-size:1em;}
-
-	#links-wrap {margin-top:35px;}
-
-	#links-list {font-size:1.5em;}
-
-	#links-list li a {font-size:0.9em;}
-
+@media (min-width: 850px) {
+	a:hover:before, a:hover:after {width:50%;}
 }
 
 </style>
@@ -168,21 +126,17 @@ a {
 <body>
 
 <div id="centering-wrap">
-	<h1 id="site-heading">Tim Aikens, <br class="mobile-only" />web design/<br class="mobile-only" />development</h1>
-	<p id="site-subheading">Full site under construction. <br class="mobile-only" />In the meantime...</p>
-	<div id="links-wrap">
-		<ul id="links-list"><span id="smaller-header">Check out my latest project (designed and developed from scratch):</span>
-			<li><a href="http://paigedupont.com/" class="td3">paigedupont.com</a></li>
-		</ul>
-		<ul id="links-list"><span>...and get to know me here:</span>
-			<li><a href="https://www.linkedin.com/pub/tim-aikens/107/b93/804" class="td3">LinkedIn</a></li>
-			<li><a href="http://codepen.io/timaikens/pens/public/" class="td3">Codepen</a></li>
-			<li><a href="http://timaikens.tumblr.com/" class="td3">Tumblr</a> (theme by me)</li>
-			<li><a href="https://instagram.com/timmyyes/" class="td3">Instagram</a></li>
-		</ul>
-	</div>
+	<h1>TimmyA.com is live!</h1>
+	<p>Now redirecting you...</p>
+	<p>If new site doesn't load, <a href="http://timmya.com" class="td3">click here</a>.</p>
 </div>
 
-<script></script>
+<script>
+window.addEventListener("load", function(){
+	window.setTimeout(function(){
+		window.location = "http://timmya.com";
+	},4000);
+});
+</script>
 </body>
 </html>
