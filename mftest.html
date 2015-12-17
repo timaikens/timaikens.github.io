@@ -112,7 +112,7 @@ function sendAjaxRequestLast() {
 	};
 	request.send();
 }
-// sendAjaxRequestLast();
+sendAjaxRequestLast();
 
 // http://ws.audioscrobbler.com/2.0/?user=aikenst&method=user.getRecentTracks&api_key=611563771428ec3ca3844da7812ff9b0&format=json
 
@@ -208,7 +208,7 @@ function sendAjaxRequestSpot() {
 					// console.log(this.responseText);
 					console.log(rObj);
 
-					var trackArtist = rObj.artist[0].name;
+					var trackArtist = rObj.artists[0].name;
 					var trackName = rObj.name;
 					console.log('"' + trackName + '" by ' + trackArtist);
 
