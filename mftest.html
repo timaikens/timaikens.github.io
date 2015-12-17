@@ -102,7 +102,7 @@ function sendAjaxRequest() {
 			} else {alert("Ajax error: " + this.status + " - " + this.statusText);}
 		}
 	};
-	request.send(jsonFormValues);
+	request.send();
 }
 
 // submitButton.addEventListener("click", function(event){
