@@ -189,7 +189,7 @@ function searchSpotify(track, artist, album, type) {
 					// var trackName = rObj.name;
 					// console.log('"' + trackName + '" by ' + trackArtist);
 
-					var trackURL = /*selectedTrack.external_urls.spotify || */("https://open.spotify.com/track/" + selectedTrackID);
+					var trackURL = selectedTrack.external_urls.spotify || ("https://open.spotify.com/track/" + selectedTrackID);
 					console.log(trackURL);
 
 				} else {alert("Ajax error: No data received");}
