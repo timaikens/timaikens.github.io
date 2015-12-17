@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+
+	<title>Tim Aikens, Web Design/Development</title>
+
+	<meta charset="utf-8" />
+	<meta name="description" content="Hi, I'm Tim and I make web stuff!" />
+	<meta name="keywords" content="Tim Aikens, creative, web, design, web design, web development, front-end, front end, front-end development, front end development, designer, developer, html, html5, css, css3, js, javascript, graphic design, graphic designer" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway' rel='stylesheet' type='text/css'>
+
+	<link rel="icon" type="image/png" href="favicon-32.png">
+
+<style>
+
+
+
+</style>
+	
+</head>
+<body>
+
+<div id="centering-wrap">
+	<h1>Spotify & Last.fm Tester</h1>
+</div>
+
+<script>
+
+
+
+/*function msgSentActions() {
+	contactForm.style.display = "none";
+	for(var j=0;j<contactForm.elements.length;j++) {
+		contactForm.elements[j].value = "";
+	}
+	// addELs to navLinks to show form again and hide message.
+	for(var k=0;k<navLinks.length;k++){
+		navLinks[k].addEventListener("click",resetForm);
+	}
+
+	var rHTxt = "Sending you back home...";
+	var returnHomeMsg = document.createElement("p");
+	returnHomeMsg.appendChild(document.createTextNode(rHTxt));
+	returnHomeMsg.id = "return-home-message";
+	formWrap.appendChild(returnHomeMsg);
+	
+	msaTO3 = window.setTimeout(function(){homeLinkActions();resetForm.call(logo);},3000);
+}*/
+
+function ajaxRequest() {
+	var request;
+	try {request = new XMLHttpRequest();} // non-IE
+	catch(e1) {
+		try {request = new ActiveXObject("Msxml2.XMLHTTP");} // IE 6+
+		catch(e2) {
+			try {request = new ActiveXObject("Microsoft.XMLHTTP");} // IE 5
+			catch(e3) {
+				request = false;
+			}
+		}
+	}
+	return request;
+}
+
+function sendAjaxRequest() {
+
+	/*var jsonFormValues = "";
+	for(var i = 0; i < contactForm.elements.length; i++) {
+		jsonFormValues += contactForm.elements[i].name + "=" + contactForm.elements[i].value + "&";
+	}
+	jsonFormValues = jsonFormValues.slice(0, -1);*/
+
+	var request = ajaxRequest();
+
+	request.open("POST", "http://ws.audioscrobbler.com/2.0/?method=aikenst.getRecentTracks&api_key=611563771428ec3ca3844da7812ff9b0&format=json", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	// request.setRequestHeader("Content-length", params.length);
+	// request.setRequestHeader("Connection", "close");
+	request.onreadystatechange = function() {
+		if(this.readyState == 4){ // "request finished and response is ready"
+			if(this.status == 200){ // "OK"
+				if(this.responseText !== null){
+
+					var rObj = JSON.parse(this.responseText);
+					console.log(rObj);
+
+					/*var oldMailMsg = document.getElementById("mail-message");
+					if(hireMe && hireMe.parentNode == formWrap){hireMeHolder = formWrap.removeChild(hireMe);}
+					if(oldMailMsg && oldMailMsg.parentNode == formWrap){formWrap.removeChild(oldMailMsg);}
+
+					var returnNode = document.createElement("p");
+					returnNode.appendChild(document.createTextNode(rTxt));
+					returnNode.id = "mail-message";
+					if(rErr === 0){returnNode.className = "ajax-error";}
+
+					formWrap.appendChild(returnNode);
+
+					if(rErr === 1){msgSentActions();}*/
+				} else {alert("Ajax error: No data received");}
+			} else {alert("Ajax error: " + this.status + " - " + this.statusText);}
+		}
+	};
+	request.send(jsonFormValues);
+}
+
+// submitButton.addEventListener("click", function(event){
+	// event.preventDefault();
+	sendAjaxRequest();
+// });
+
+// http://ws.audioscrobbler.com/2.0/?method=aikenst.getRecentTracks&api_key=611563771428ec3ca3844da7812ff9b0&format=json
+
+</script>
+</body>
+</html>
