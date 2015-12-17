@@ -84,6 +84,7 @@ function sendAjaxRequest() {
 				if(this.responseText !== null){
 
 					var rObj = JSON.parse(this.responseText);
+					console.log(this.responseText);
 					console.log(rObj);
 
 					/*var oldMailMsg = document.getElementById("mail-message");
