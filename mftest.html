@@ -24,9 +24,13 @@
 
 <div id="centering-wrap">
 	<h1>Spotify & Last.fm Tester</h1>
+	<p><span id="song-info"></span> <a id="song-link" href="" target="_blank">Listen in Spotify</a></p>
 </div>
 
 <script>
+
+var songInfo = document.getElementById("song-info"),
+	songLink = document.getElementById("song-link");
 
 function ajaxRequest() {
 	var request;
@@ -43,7 +47,117 @@ function ajaxRequest() {
 	return request;
 }
 
-function sendAjaxRequestLast() {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// SEARCH FUNCTIONS
+
+//   encodeURIComponent(uri);  --> to change spaces into %20 and special characters to respective
+
+function selectTrack(rObj, track, artist, album) {
+
+	var n = rObj.tracks.items.length;
+	
+	for(var i = 0; i < n; i++) {
+
+		var item = rObj.tracks.items[i];
+		
+		// For song with multiple artists (Last.fm only returns first artist from Spotify)
+		function ai(){
+			for(var j = 0; j < item.artists.length; j++){
+				if(item.artists[j].name == artist){return true}
+			}
+			return false
+		}
+
+		var artistIncluded = ai();
+
+		if(item.name == track && item.album.name == album && artistIncluded){
+			return item;
+		}
+	}
+	return false;
+}
+
+function createTrackLink(trackObj) {
+	if(trackObj) {
+		var trackURL = trackObj.external_urls.spotify || ("https://open.spotify.com/track/" + trackObj.id);
+		console.log(trackURL);
+		// var infoText = document.createTextNode();
+		// var linkText = document.createTextNode();
+		songLink.setAttribute("href", trackURL);
+	}
+}
+
+function searchSpotify(track, artist, album, type) {
+
+	var trE = encodeURIComponent(track),
+		arE = encodeURIComponent(artist),
+		alE = encodeURIComponent(album);
+
+	if(!type){type="track";}
+
+	var qString = "track:" + trE + "%20artist:" + arE + "%20album:" + alE;
+	var requestURL = "https://api.spotify.com/v1/search?q=" + qString + "&type=" + type;
+	console.log(requestURL);
+
+	var request = ajaxRequest();
+
+	request.open("GET", requestURL, true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	// request.setRequestHeader("Content-length", params.length);
+	// request.setRequestHeader("Connection", "close");
+	request.onreadystatechange = function() {
+		if(this.readyState == 4){ // "request finished and response is ready"
+			if(this.status == 200){ // "OK"
+				if(this.responseText !== null){
+
+					var rObj = JSON.parse(this.responseText);
+					// console.log(this.responseText);
+					console.log(rObj);
+
+					var selectedTrack = selectTrack(rObj, track, artist, album);
+					console.log(selectedTrack);
+
+					createTrackLink(selectedTrack);
+
+				} else {alert("Ajax error: No data received");}
+			} else {alert("Ajax error: " + this.status + " - " + this.statusText);}
+		}
+	};
+	request.send();
+}
+// searchSpotify("Get Some", "Lykke Li", "Wounded Rhymes", "track");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function getRecentTracksFromLastFM() {
 
 	var request = ajaxRequest();
 
@@ -61,8 +175,15 @@ function sendAjaxRequestLast() {
 					console.log(rObj);
 
 					var trackArtist = rObj.recenttracks.track[0].artist['#text'];
+					var trackAlbum = rObj.recenttracks.track[0].album['#text'];
 					var trackName = rObj.recenttracks.track[0].name;
-					console.log('"' + trackName + '" by ' + trackArtist);
+					console.log('"' + trackName + '" by ' + trackArtist + ' (' + trackAlbum + ')');
+
+					var infoText = document.createTextNode('"' + trackName + '" by ' + trackArtist/* + ' (' + trackAlbum + ')'*/);
+
+					songInfo.appendChild(infoText);
+
+					searchSpotify(trackName, trackArtist, trackAlbum, "track");
 
 					/*
 
@@ -112,7 +233,7 @@ function sendAjaxRequestLast() {
 	};
 	request.send();
 }
-sendAjaxRequestLast();
+getRecentTracksFromLastFM();
 
 // http://ws.audioscrobbler.com/2.0/?user=aikenst&method=user.getRecentTracks&api_key=611563771428ec3ca3844da7812ff9b0&format=json
 
@@ -123,77 +244,9 @@ sendAjaxRequestLast();
 
 
 
-// SEARCH FUNCTIONS
 
-//   encodeURIComponent(uri);  --> to change spaces into %20 and special characters to respective
 
-function selectTrack(rObj, track, artist, album) {
 
-	var n = rObj.tracks.items.length;
-	
-	for(var i = 0; i < n; i++) {
-
-		var item = rObj.tracks.items[i];
-		
-		// For song with multiple artists (Last.fm only returns first artist from Spotify)
-		function ai(){
-			for(var j = 0; j < item.artists.length; j++){
-				if(item.artists[j].name == artist){return true}
-			}
-			return false
-		}
-
-		var artistIncluded = ai();
-
-		if(item.name == track && item.album.name == album && artistIncluded){
-			return item;
-		}
-	}
-	return false;
-}
-
-function searchSpotify(track, artist, album, type) {
-
-	var trE = encodeURIComponent(track),
-		arE = encodeURIComponent(artist),
-		alE = encodeURIComponent(album);
-
-	if(!type){type="track";}
-
-	var qString = "track:" + trE + "%20artist:" + arE + "%20album:" + alE;
-	var requestURL = "https://api.spotify.com/v1/search?q=" + qString + "&type=" + type;
-	console.log(requestURL);
-
-	var request = ajaxRequest();
-
-	request.open("GET", requestURL, true);
-	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	// request.setRequestHeader("Content-length", params.length);
-	// request.setRequestHeader("Connection", "close");
-	request.onreadystatechange = function() {
-		if(this.readyState == 4){ // "request finished and response is ready"
-			if(this.status == 200){ // "OK"
-				if(this.responseText !== null){
-
-					var rObj = JSON.parse(this.responseText);
-					// console.log(this.responseText);
-					console.log(rObj);
-
-					var selectedTrack = selectTrack(rObj, track, artist, album);
-					console.log(selectedTrack);
-
-					if(selectedTrack) {
-						var trackURL = selectedTrack.external_urls.spotify || ("https://open.spotify.com/track/" + selectedTrack.id);
-						console.log(trackURL);
-					}
-
-				} else {alert("Ajax error: No data received");}
-			} else {alert("Ajax error: " + this.status + " - " + this.statusText);}
-		}
-	};
-	request.send();
-}
-searchSpotify("Get Some", "Lykke Li", "Wounded Rhymes", "track");
 
 
 
@@ -202,7 +255,8 @@ searchSpotify("Get Some", "Lykke Li", "Wounded Rhymes", "track");
 
 //   https://play.spotify.com/track/6Jcw41spJ0OfmV9hEIf9Fu
 
-function sendAjaxRequestSpot() {
+/*
+function getSpotifyTrack() {
 
 	var request = ajaxRequest();
 	var trackID = "28eknasscN7DGqSHo2VWzC";
@@ -235,7 +289,8 @@ function sendAjaxRequestSpot() {
 	};
 	request.send();
 }
-// sendAjaxRequestSpot();
+// getSpotifyTrack();
+*/
 
 </script>
 </body>
