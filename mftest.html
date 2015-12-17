@@ -112,7 +112,7 @@ function sendAjaxRequestLast() {
 	};
 	request.send();
 }
-// sendAjaxRequestLast();
+sendAjaxRequestLast();
 
 // http://ws.audioscrobbler.com/2.0/?user=aikenst&method=user.getRecentTracks&api_key=611563771428ec3ca3844da7812ff9b0&format=json
 
@@ -181,16 +181,11 @@ function searchSpotify(track, artist, album, type) {
 
 					var selectedTrack = selectTrack(rObj, track, artist, album);
 					console.log(selectedTrack);
-					var selectedTrackID = selectedTrack.id;
 
-					// var resultsArray = [];
-
-					// var trackArtist = rObj.artist[0].name;
-					// var trackName = rObj.name;
-					// console.log('"' + trackName + '" by ' + trackArtist);
-
-					var trackURL = selectedTrack.external_urls.spotify || ("https://open.spotify.com/track/" + selectedTrackID);
-					console.log(trackURL);
+					if(selectedTrack) {
+						var trackURL = selectedTrack.external_urls.spotify || ("https://open.spotify.com/track/" + selectedTrack.id);
+						console.log(trackURL);
+					}
 
 				} else {alert("Ajax error: No data received");}
 			} else {alert("Ajax error: " + this.status + " - " + this.statusText);}
