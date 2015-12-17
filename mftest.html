@@ -135,7 +135,7 @@ function searchSpotify(tr, ar, al, type) {
 
 	if(!type){type="track";}
 
-	var qString = trE;
+	var qString = "track:" + trE + "%20artist:" + arE + "%20album:" + alE;
 	var requestURL = "https://api.spotify.com/v1/search?q=" + qString + "&type=" + type;
 	console.log(requestURL);
 
@@ -151,8 +151,10 @@ function searchSpotify(tr, ar, al, type) {
 				if(this.responseText !== null){
 
 					var rObj = JSON.parse(this.responseText);
-					console.log(this.responseText);
+					// console.log(this.responseText);
 					console.log(rObj);
+
+					var resultsArray = [];
 
 					// var trackArtist = rObj.artist[0].name;
 					// var trackName = rObj.name;
