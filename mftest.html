@@ -123,15 +123,23 @@ function sendAjaxRequestLast() {
 
 
 
-// SEARCH FUNCTION
+// SEARCH FUNCTIONS
 
 //   encodeURIComponent(uri);  --> to change spaces into %20 and special characters to respective
 
-function searchSpotify(tr, ar, al, type) {
+function selectSong(rObj, track, artist, album) {
+	var n = rObj.tracks.items.length;
+	for(var i = 0; i < n; i++) {
+		var item = rObj.tracks.items[i];
+		if(item.name == track && item.album.name == album && item.artists.name == artist)
+	}
+}
 
-	var trE = encodeURIComponent(tr),
-		arE = encodeURIComponent(ar),
-		alE = encodeURIComponent(al);
+function searchSpotify(track, artist, album, type) {
+
+	var trE = encodeURIComponent(track),
+		arE = encodeURIComponent(artist),
+		alE = encodeURIComponent(album);
 
 	if(!type){type="track";}
 
@@ -154,7 +162,9 @@ function searchSpotify(tr, ar, al, type) {
 					// console.log(this.responseText);
 					console.log(rObj);
 
-					var resultsArray = [];
+					selectSong(rObj, track, artist, album);
+
+					// var resultsArray = [];
 
 					// var trackArtist = rObj.artist[0].name;
 					// var trackName = rObj.name;
@@ -169,19 +179,19 @@ function searchSpotify(tr, ar, al, type) {
 	};
 	request.send();
 }
-searchSpotify("Get Some", "Lykke Li", "Wounded Rhymes", "track");
+// searchSpotify("Get Some", "Lykke Li", "Wounded Rhymes", "track");
 
 
 
 
+//   28eknasscN7DGqSHo2VWzC
 
-
-//   https://play.spotify.com/track/4kti5sAkWBOhPyCVItDYf8
+//   https://play.spotify.com/track/6Jcw41spJ0OfmV9hEIf9Fu
 
 function sendAjaxRequestSpot() {
 
 	var request = ajaxRequest();
-	var trackID = "2KjJhGtseXQBI5Cg6ZZdc9";
+	var trackID = "28eknasscN7DGqSHo2VWzC";
 	var requestURL = "https://api.spotify.com/v1/tracks/" + trackID;
 	console.log(requestURL);
 
@@ -211,7 +221,7 @@ function sendAjaxRequestSpot() {
 	};
 	request.send();
 }
-// sendAjaxRequestSpot();
+sendAjaxRequestSpot();
 
 </script>
 </body>
