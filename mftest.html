@@ -87,7 +87,7 @@ function sendAjaxRequest() {
 					console.log(this.responseText);
 					console.log(rObj);
 
-					var trackArtist = rObj.recenttracks.track[0].artist.#text;
+					var trackArtist = rObj.recenttracks.track[0].artist['#text'];
 					var trackName = rObj.recenttracks.track[0].name;
 					console.log('"' + trackName + '" by ' + trackArtist);
 
