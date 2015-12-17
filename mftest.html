@@ -74,7 +74,7 @@ function sendAjaxRequest() {
 
 	var request = ajaxRequest();
 
-	request.open("GET", "http://ws.audioscrobbler.com/2.0/?method=aikenst.getRecentTracks&api_key=611563771428ec3ca3844da7812ff9b0&format=json", true);
+	request.open("GET", "http://ws.audioscrobbler.com/2.0/?method=user.getRecentTracks&api_key=611563771428ec3ca3844da7812ff9b0&format=json", true);
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	// request.setRequestHeader("Content-length", params.length);
 	// request.setRequestHeader("Connection", "close");
