@@ -112,7 +112,7 @@ function sendAjaxRequestLast() {
 	};
 	request.send();
 }
-sendAjaxRequestLast();
+// sendAjaxRequestLast();
 
 // http://ws.audioscrobbler.com/2.0/?user=aikenst&method=user.getRecentTracks&api_key=611563771428ec3ca3844da7812ff9b0&format=json
 
@@ -127,12 +127,29 @@ sendAjaxRequestLast();
 
 //   encodeURIComponent(uri);  --> to change spaces into %20 and special characters to respective
 
-function selectSong(rObj, track, artist, album) {
+function selectTrack(rObj, track, artist, album) {
+
 	var n = rObj.tracks.items.length;
+	
 	for(var i = 0; i < n; i++) {
+
 		var item = rObj.tracks.items[i];
-		if(item.name == track && item.album.name == album && item.artists.name == artist){}
+		
+		// For song with multiple artists (Last.fm only returns first artist from Spotify)
+		function ai(){
+			for(var j = 0; j < item.artists.length; j++){
+				if(item.artists[j].name == artist){return true}
+			}
+			return false
+		}
+
+		var artistIncluded = ai();
+
+		if(item.name == track && item.album.name == album && artistIncluded){
+			return item;
+		}
 	}
+	return false;
 }
 
 function searchSpotify(track, artist, album, type) {
@@ -162,7 +179,9 @@ function searchSpotify(track, artist, album, type) {
 					// console.log(this.responseText);
 					console.log(rObj);
 
-					selectSong(rObj, track, artist, album);
+					var selectedTrack = selectTrack(rObj, track, artist, album);
+					console.log(selectedTrack);
+					// var selectedTrackID = selectedTrack.
 
 					// var resultsArray = [];
 
@@ -179,7 +198,7 @@ function searchSpotify(track, artist, album, type) {
 	};
 	request.send();
 }
-// searchSpotify("Get Some", "Lykke Li", "Wounded Rhymes", "track");
+searchSpotify("Get Some", "Lykke Li", "Wounded Rhymes", "track");
 
 
 
@@ -221,7 +240,7 @@ function sendAjaxRequestSpot() {
 	};
 	request.send();
 }
-sendAjaxRequestSpot();
+// sendAjaxRequestSpot();
 
 </script>
 </body>
