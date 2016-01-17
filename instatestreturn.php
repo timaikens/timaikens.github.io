@@ -1,5 +1,8 @@
 <?php
 
+echo "went to PHP";
+exit;
+
 if(!isset($_POST['code'])) {
 	//This page should not be accessed directly. Need to submit the form.
 	// $resp_error_1 = array(0, "ERROR; You need to submit the form!");

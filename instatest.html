@@ -83,6 +83,8 @@ function callToInsta() {
 
 	var requestURI = "https://api.instagram.com/oauth/authorize/?client_id=" + itClientID + "&redirect_uri=" + itRedirectURI + "&response_type=code";
 
+	console.log(requestURI);
+
 	request.open("POST", requestURI, true);
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	request.onreadystatechange = function() {
@@ -93,7 +95,7 @@ function callToInsta() {
 					var rObj = JSON.parse(this.responseText);
 					
 					console.log(rObj);
-					
+
 				} else {alert("Ajax error: No data received");}
 			} else {alert("Ajax error: " + this.status + " - " + this.statusText);}
 		}
