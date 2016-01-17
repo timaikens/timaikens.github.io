@@ -55,11 +55,13 @@ a {
 </head>
 <body>
 
+<button id="insta-button"></button>
 <div id="insta-display"></div>
 
 <script>
 
-var displayDiv = document.getElementById("insta-display");
+var button = document.getElementById("insta-button"),
+	displayDiv = document.getElementById("insta-display");
 
 function callToInsta() {
 
@@ -70,7 +72,8 @@ function callToInsta() {
 
 	console.log(request.responseText);
 };
-callToInsta();
+
+button.addEventListener("click", callToInsta);
 
 </script>
 </body>
