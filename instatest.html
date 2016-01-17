@@ -48,14 +48,17 @@ a {
 	transition-duration:0.3s;
 }
 
-#insta-display {border:1px solid red;}
+#insta-display {border:1px solid red;margin:20px;}
+
+button {margin:20px;}
 
 </style>
 	
 </head>
 <body>
 
-<button id="insta-button">CALL</button>
+<button id="insta-button-1">CALL TO API</button>
+<button id="insta-button-2">CALL TO MY PAGE</button>
 <div id="insta-display"></div>
 
 <script>
@@ -63,32 +66,35 @@ a {
 // client id:      26eb7ce3429a45bca050c66f51727a1d
 // client secret:  9bd42a0476c54f2382bef55be334ec4a
 
-var button = document.getElementById("insta-button"),
+var button1 = document.getElementById("insta-button-1"),
+	button2 = document.getElementById("insta-button-2")
 	displayDiv = document.getElementById("insta-display");
-/*
+
 function callToInsta() {
 
 	var request = new XMLHttpRequest();
 
-	request.open("GET", "https://api.instagram.com/v1/users/timmyyes/media/recent/?client_id=26eb7ce3429a45bca050c66f51727a1d&count=2", true);
+	request.open("GET", "https://api.instagram.com/v1/users/timmyyes/media/recent/?count=2", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	request.send();
 
 	console.log(request.responseText);
 };
 
-button.addEventListener("click", callToInsta);
-*/
+button1.addEventListener("click", callToInsta);
+
 
 function getImagesFromIG() {
 	var request = new XMLHttpRequest();
 
 	request.open("GET", "https://www.instagram.com/timmyyes/", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	request.send();
 
 	console.log(request.responseText);
 }
 
-button.addEventListener("click", getImagesFromIG);
+button2.addEventListener("click", getImagesFromIG);
 
 
 </script>
