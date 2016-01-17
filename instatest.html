@@ -60,6 +60,9 @@ a {
 
 <script>
 
+// client id:      26eb7ce3429a45bca050c66f51727a1d
+// client secret:  9bd42a0476c54f2382bef55be334ec4a
+
 var button = document.getElementById("insta-button"),
 	displayDiv = document.getElementById("insta-display");
 
@@ -67,7 +70,7 @@ function callToInsta() {
 
 	var request = new XMLHttpRequest();
 
-	request.open("GET", "https://api.instagram.com/v1/users/timmyyes/media/recent/?count=2", true);
+	request.open("GET", "https://api.instagram.com/v1/users/timmyyes/media/recent/?client_id=26eb7ce3429a45bca050c66f51727a1d&count=2", true);
 	request.send();
 
 	console.log(request.responseText);
