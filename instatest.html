@@ -63,6 +63,8 @@ button {margin:20px;}
 
 <script>
 
+// user id:        33327804
+
 // client id:      26eb7ce3429a45bca050c66f51727a1d
 // client secret:  9bd42a0476c54f2382bef55be334ec4a
 
@@ -74,7 +76,7 @@ function callToInsta() {
 
 	var request = new XMLHttpRequest();
 
-	request.open("GET", "https://api.instagram.com/v1/users/timmyyes/media/recent/?client_id=26eb7ce3429a45bca050c66f51727a1d&client_secret=9bd42a0476c54f2382bef55be334ec4a&count=2", true);
+	request.open("GET", "https://api.instagram.com/v1/users/33327804/media/recent/?count=2", true);
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	request.send();
 
