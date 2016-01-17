@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+
+	<title>InstaTest by Tim Aikens, Web Design/Development</title>
+
+	<meta charset="utf-8" />
+	<meta name="description" content="Hi, I'm Tim and I make web stuff!" />
+	<meta name="keywords" content="Tim Aikens, creative, web, design, web design, web development, front-end, front end, front-end development, front end development, designer, developer, html, html5, css, css3, js, javascript, graphic design, graphic designer" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway' rel='stylesheet' type='text/css'>
+
+	<link rel="icon" type="image/png" href="favicon-32.png">
+
+<style>
+
+html {
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+
+*, *:before, *:after {
+	-webkit-box-sizing:inherit;
+	-moz-box-sizing:inherit;
+	box-sizing:inherit;
+}
+
+html, body {
+	width:100%;
+	height:100%;
+	margin:0;
+	padding:0;
+	font-size:1em;
+	background-color:#FFFFF5;
+	text-align:center;
+}
+
+a {
+	text-decoration:none;
+}
+
+.td3 {
+	-webkit-transition-duration:0.3s;
+	-moz-transition-duration:0.3s;
+	-o-transition-duration:0.3s;
+	transition-duration:0.3s;
+}
+
+#insta-display {border:1px solid red;}
+
+</style>
+	
+</head>
+<body>
+
+<div id="insta-display"></div>
+
+<script>
+
+var displayDiv = document.getElementById("insta-display");
+
+function callToInsta() {
+
+	var request = new XMLHttpRequest();
+
+	request.open("GET", "https://api.instagram.com/v1/users/timmyyes/media/recent/?count=2", true);
+	request.send();
+
+	console.log(request.responseText);
+};
+callToInsta();
+
+</script>
+</body>
+</html>
