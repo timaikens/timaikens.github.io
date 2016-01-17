@@ -65,7 +65,7 @@ a {
 
 var button = document.getElementById("insta-button"),
 	displayDiv = document.getElementById("insta-display");
-
+/*
 function callToInsta() {
 
 	var request = new XMLHttpRequest();
@@ -77,6 +77,19 @@ function callToInsta() {
 };
 
 button.addEventListener("click", callToInsta);
+*/
+
+function getImagesFromIG() {
+	var request = new XMLHttpRequest();
+
+	request.open("GET", "https://www.instagram.com/timmyyes/", true);
+	request.send();
+
+	console.log(request.responseText);
+}
+
+button.addEventListener("click", getImagesFromIG);
+
 
 </script>
 </body>
