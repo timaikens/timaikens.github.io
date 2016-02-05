@@ -90,7 +90,7 @@ h1, h2, h3, h4, h5, h6, a {
 	left:0;
 	width:100%;
 	min-height:100%;
-	background:transparent url('/images/bgtexture.png') left top/1250px repeat;
+	background:transparent url('images/bgtexture.png') left top/1250px repeat;
 	opacity:0.22;
 	z-index:0;
 }
