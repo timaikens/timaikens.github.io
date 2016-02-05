@@ -403,7 +403,7 @@ h1, h2, h3, h4, h5, h6, a {
 	}
 
 	#head-wrap {
-		padding:11px 16px;
+		padding:16px 20px;
 		margin:0;
 	}
 
@@ -420,29 +420,29 @@ h1, h2, h3, h4, h5, h6, a {
 	}
 
 	#asn-wrap {
-		padding:6px 16px 0;
+		padding:6px 20px 0;
 		font-size:0.875em;
 		line-height:1.5em;
 	}
 
 	#nav-wrap {
-		padding:0 8px;
+		padding:0 10px;
 	}
 
 	#nav-spacer {
-		margin:0 8px 26px;
+		margin:0 10px 26px;
 	}
 
 	.nav-link-li {
-		padding:0 8px;
+		padding:0 10px;
 		margin:6px 0;
 	}
 
 	#experience-wrap {
-		padding:32px 8px 0;
+		padding:32px 10px 0;
 	}
 
 	.job-wrap {
-		padding:0 8px 31px;
+		padding:0 10px 31px;
 	}
 }
