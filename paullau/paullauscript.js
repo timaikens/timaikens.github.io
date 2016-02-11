@@ -126,7 +126,8 @@ var stTitle = document.getElementById("spotify-track-title"),
 	stArtist = document.getElementById("spotify-track-artist"),
 	stTitleLink = document.getElementById("spotify-track-title-link"),
 	stArtistLink = document.getElementById("spotify-track-artist-link"),
-	defaultLinkURL = "https://open.spotify.com/";
+	/* backup URL in case song search doesn't work */
+	defaultLinkURL = "https://play.spotify.com/";
 
 function ajaxRequest() {
 	var request;
@@ -148,25 +149,34 @@ function ajaxRequest() {
 
 function selectTrack(rObj, track, artist, album) {
 
-	var n = rObj.tracks.items.length;
-	
-	for(var i = 0; i < n; i++) {
+	if(rObj) {
 
-		var item = rObj.tracks.items[i],
-			m = item.artists.length;
+		var n = rObj.tracks.items.length;
 		
-		// For song with multiple artists (Last.fm only returns first artist from Spotify)
-		function ai(){
-			for(var j = 0; j < m; j++){
-				if(item.artists[j].name == artist){return true}
+		for(var i = 0; i < n; i++) {
+
+			var item = rObj.tracks.items[i],
+				m = item.artists.length;
+			
+			// For song with multiple artists (Last.fm only returns first artist from Spotify)
+			function ai(){
+				for(var j = 0; j < m; j++){
+					// Sometimes in sending to Last.fm, artist and/or song name is made lowercase
+					if(item.artists[j].name == artist || item.artists[j].name.toUpperCase() == artist.toUpperCase()){
+						return true;
+					}
+				}
+				return false;
 			}
-			return false
-		}
 
-		var artistIncluded = ai();
+			var artistIncluded = ai();
 
-		if(item.name == track && item.album.name == album && artistIncluded){
-			return item;
+			if(item.name == track && item.album.name == album && artistIncluded){
+				return item;
+			// Sometimes in sending to Last.fm, artist and/or song name is made lowercase
+			} else if(item.name.toUpperCase() == track.toUpperCase() && item.album.name.toUpperCase() == album.toUpperCase() && artistIncluded){
+				return item;
+			}
 		}
 	}
 	return false;
@@ -182,18 +192,21 @@ function createTrackLinks(trackObj, artist) {
 		var n = trackObj.artists.length;
 
 		for(var i = 0; i < n; i++) {
-			if(trackObj.artists[i].name == artist) {
-				artistURL = trackObj.artists[i].external_urls.spotify || ("https://open.spotify.com/artist/" + trackObj.artists[i].id);
+			// Sometimes in sending to Last.fm, artist and/or song name is made lowercase
+			if(trackObj.artists[i].name == artist || trackObj.artists[i].name.toUpperCase() == artist.toUpperCase()) {
+				/* As of 2/11/16: Spotify seems to have changed how songs open in the web player. Used to work with the external_url provided
+				   in returned track object (open.spotify.com/...) but now seems to only work right with (play.spotify.com/...) */
+				artistURL = /*trackObj.artists[i].external_urls.spotify || */("https://play.spotify.com/artist/" + trackObj.artists[i].id);
 			}
 		}
 		/* fallback in case artist name wasn't exactly matched in list - sends to first artist listed */
 		if(!artistURL) {
-			artistURL = trackObj.artists[0].external_urls.spotify || ("https://open.spotify.com/artist/" + trackObj.artists[0].id);
+			artistURL = /*trackObj.artists[0].external_urls.spotify || */("https://play.spotify.com/artist/" + trackObj.artists[0].id);
 		}
 	}
 
 	if(trackObj) {
-		trackURL = trackObj.external_urls.spotify || ("https://open.spotify.com/track/" + trackObj.id);
+		trackURL = /*trackObj.external_urls.spotify || */("https://play.spotify.com/track/" + trackObj.id);
 		selectPrimaryArtist();
 	}
 
