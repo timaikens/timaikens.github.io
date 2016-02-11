@@ -128,10 +128,10 @@ h1, h2, h3, h4, h5, h6, a {
 #subhead-role-spacer {
 	display:inline;
 	opacity:1;
-	-webkit-transition:all 3s ease-in;
-	-moz-transition:all 3s ease-in;
-	-o-transition:all 3s ease-in;
-	transition:all 3s ease-in;
+	-webkit-transition:opacity 3s ease-in;
+	-moz-transition:opacity 3s ease-in;
+	-o-transition:opacity 3s ease-in;
+	transition:opacity 3s ease-in;
 }
 
 @-webkit-keyframes sh-cursor {
