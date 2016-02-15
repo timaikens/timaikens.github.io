@@ -99,13 +99,13 @@ sendAjaxRequest: function (options) {
 		xhr.onreadystatechange = function() {
 			if(this.readyState == 4){ // "request finished and response is ready"
 				if(this.status == 200){ // "OK"
-					if(this.responseText !== null){
+					if(this.responseXML !== null){
 
 						/* how to handle different types of return data...? */
 
 						// var r = JSON.parse(this.responseText);
 
-						opt.success(this.responseText);
+						opt.success(this.responseXML);
 					} else {opt.error();}
 				} else {
 					
