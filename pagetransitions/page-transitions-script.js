@@ -150,7 +150,7 @@ function transitionPages(event) {
 			var frag = document.createDocumentFragment();
 			frag.innerHTML = resp;
 
-			console.log(frag.childNodes[0]);
+			console.log(frag.firstElementChild);
 		}
 	});
 }
