@@ -1,7 +1,8 @@
 /*  JavaScript for Smooth Page Transitions  */
 
 
-window.onbeforeunload = function() { return "You work will be lost."; };
+// alert on back button hit:
+// window.onbeforeunload = function() { return "You work will be lost."; };
 
 
 /* ----- GENERAL FUNCTIONS ----- */
@@ -99,13 +100,13 @@ sendAjaxRequest: function (options) {
 		xhr.onreadystatechange = function() {
 			if(this.readyState == 4){ // "request finished and response is ready"
 				if(this.status == 200){ // "OK"
-					if(this.responseXML !== null){
+					if(this.responseText !== null){
 
 						/* how to handle different types of return data...? */
 
 						// var r = JSON.parse(this.responseText);
 
-						opt.success(this.responseXML);
+						opt.success(this.responseText);
 					} else {opt.error();}
 				} else {
 					
@@ -145,6 +146,11 @@ function transitionPages(event) {
 		success: function(resp){
 			console.log("response: " + resp);
 			console.log(typeof resp);
+
+			var frag = document.createDocumentFragment();
+			frag.innerHTML = resp;
+
+			console.log(frag);
 		}
 	});
 }
