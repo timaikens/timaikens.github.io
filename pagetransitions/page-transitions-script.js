@@ -1,7 +1,7 @@
 /*  JavaScript for Smooth Page Transitions  */
 
 
-
+window.onbeforeunload = function() { return "You work will be lost."; };
 
 
 /* ----- GENERAL FUNCTIONS ----- */
