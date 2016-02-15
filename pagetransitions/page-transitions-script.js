@@ -144,6 +144,7 @@ function transitionPages(event) {
 		type: "GET",
 		success: function(resp){
 			console.log("response: " + resp);
+			console.log(typeof resp);
 		}
 	});
 }
