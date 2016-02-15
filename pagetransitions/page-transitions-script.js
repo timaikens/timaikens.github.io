@@ -103,7 +103,7 @@ sendAjaxRequest: function (options) {
 
 						/* how to handle different types of return data...? */
 
-						var r = JSON.parse(this.responseText);
+						// var r = JSON.parse(this.responseText);
 
 						opt.success(this.responseText);
 					} else {opt.error();}
