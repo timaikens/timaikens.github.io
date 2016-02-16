@@ -147,10 +147,12 @@ function transitionPages(event) {
 			console.log("response: " + resp);
 			console.log(typeof resp);
 
-			var frag = document.createDocumentFragment();
-			frag.innerHTML = resp;
+			var frag = document.createDocumentFragment(),
+				fragDiv = document.createElement("div");
+			fragDiv.innerHTML = resp;
+			frag.appendChild(fragDiv);
 
-			console.log(frag.firstElementChild);
+			console.log(frag);
 		}
 	});
 }
