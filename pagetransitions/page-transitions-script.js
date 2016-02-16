@@ -148,7 +148,7 @@ function transitionPages(event) {
 			console.log(typeof resp);
 
 			var frag = document.createDocumentFragment(),
-				fragDiv = document.createElement("body");
+				fragBody = document.createElement("body");
 			fragBody.innerHTML = resp;
 			frag.appendChild(fragBody);
 
