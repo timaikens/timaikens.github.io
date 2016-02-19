@@ -49,7 +49,7 @@ html, body {
 .text32 {font-size:2em;}
 
 #wrapper {
-	padding:100px 40px 0;
+	padding:100px 40px;
 	width:100%;
 }
 
@@ -149,7 +149,7 @@ html, body {
 }
 
 @media screen and (max-width:767px) {
-	#wrapper {padding:100px 20px 0;}
+	#wrapper {padding:100px 20px;}
 }
 
 @media screen and (min-width:480px) {
@@ -165,7 +165,7 @@ html, body {
 
 	#wrapper {
 		width:100%;
-		padding:100px 12px 0;
+		padding:100px 12px;
 	}
 
 	#thanksgiving-sg-ad {
