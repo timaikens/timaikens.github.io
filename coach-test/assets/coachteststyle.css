@@ -84,11 +84,11 @@ html, body {
 	-ms-transform:translateY(-50%);
 	-o-transform:translateY(-50%);
 	transform:translateY(-50%);
-	-webkit-transition:background-position 0s;
-	-moz-transition:background-position 0s;
-	-ms-transition:background-position 0s;
-	-o-transition:background-position 0s;
-	transition:background-position 0s;
+	-webkit-transition:background-position 0s, left 0.3s, right 0.3s;
+	-moz-transition:background-position 0s, left 0.3s, right 0.3s;
+	-ms-transition:background-position 0s, left 0.3s, right 0.3s;
+	-o-transition:background-position 0s, left 0.3s, right 0.3s;
+	transition:background-position 0s, left 0.3s, right 0.3s;
 }
 
 #change-slide-left {
