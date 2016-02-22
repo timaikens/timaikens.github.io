@@ -1,0 +1,219 @@
+/*     CSS for Serious Eats Thanksgiving Survival Guide Banner     */
+
+/*
+
+MAIN BREAKPOINTS:
+  max 479
+  max 767
+  max 971
+
+*/
+
+@font-face {
+	font-family:'brandon-grotesque';
+	src:url('assets/fonts/brandongrotesque/brandon-bld-webfont.eot');
+	src:url('assets/fonts/brandongrotesque/brandon-bld-webfont.eot?#iefix') format('embedded-opentype'),
+		url('assets/fonts/brandongrotesque/brandon-bld-webfont.woff2') format('woff2'),
+		url('assets/fonts/brandongrotesque/brandon-bld-webfont.woff') format('woff'),
+		url('assets/fonts/brandongrotesque/brandon-bld-webfont.ttf') format('truetype'),
+		url('assets/fonts/brandongrotesque/brandon-bld-webfont.svg#brandon-grotesquebold') format('svg');
+	font-weight:700;
+	font-style:normal;
+}
+
+
+
+html {
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+
+*, *:before, *:after {
+	-webkit-box-sizing:inherit;
+	-moz-box-sizing:inherit;
+	box-sizing:inherit;
+}
+
+html, body {
+	margin:0;
+	padding:0;
+}
+
+.centering {
+	position:relative;
+}
+
+.text18 {font-size:1.125em;}
+.text24 {font-size:1.5em;}
+.text32 {font-size:2em;}
+
+#wrapper {
+	padding:100px 40px;
+	width:100%;
+}
+
+
+/* --- THANKSGIVING AD --- */
+
+#thanksgiving-sg-ad {
+	position:relative;
+	width:100%;
+	height:0;
+	padding-bottom:200px;
+	margin:0 auto;
+}
+
+#tsga__white-box {
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:35%;
+	max-width:350px;
+	min-width:277px;
+	padding:9px 0;
+	background-color:white; /* IE8- fallback */
+	background-color:rgba(255,255,255,0.9); /* major and IE9+ */
+	text-align:center;
+	color:#3D414A;
+	font-family:brandon-grotesque,'Helvetica Neue',Helvetica,Arial,sans-serif;
+	font-weight:700;
+	font-size:1em;
+}
+
+#tsga__text-box {
+	position:relative;
+	width:86%;
+	margin:11px auto;
+	padding:7px 0;
+	border-top:1px solid #EDBF36;
+	border-bottom:1px solid #EDBF36;
+	line-height:2.11em;
+}
+
+#tsga__text-box p {
+	margin:0;
+}
+
+#tsga__text-box p.shift-text-up {
+	margin:-0.722% 0 0.722%;
+}
+
+#tsga__go-button {
+	height:19.23%;
+	width:16%;
+	margin:0 auto;
+}
+
+#tsga__go-button a {
+	display:block;
+	height:100%;
+	width:100%;
+	border:2px solid #FF3600;
+	text-decoration:none;
+	background-color:white;
+	color:#FF3600;
+	font-size:1.25em;
+	line-height:1.65em;
+	-webkit-transition-duration:0.2s;
+	-moz-transition-duration:0.2s;
+	-ms-transition-duration:0.2s;
+	-o-transition-duration:0.2s;
+	transition-duration:0.2s;
+}
+
+#original-image {
+	position:relative;
+	display:block;
+	width:100%;
+	max-width:615px;
+	margin:50px auto 0;
+}
+
+
+/* --- MEDIA QUERIES --- */
+
+@media screen and (min-width:972px) {
+
+	#wrapper {padding:100px 80px;}
+
+	#tsga__white-box {
+		left:50%;
+		-webkit-transform:translateX(-50%);
+		-moz-transform:translateX(-50%);
+		-ms-transform:translateX(-50%); /* for IE9+; if need IE8- use another method */
+		-o-transform:translateX(-50%);
+		transform:translateX(-50%);
+	}
+}
+
+@media screen and (max-width:767px) {
+	#wrapper {padding:100px 20px;}
+}
+
+@media screen and (min-width:480px) {
+
+	/* No hover effect on mobile */
+	#tsga__go-button:hover a {
+		background-color:#FF3600;
+		color:white;
+	}
+}
+
+@media screen and (max-width:479px) {
+
+	#wrapper {
+		width:100%;
+		padding:100px 12px;
+	}
+
+	#thanksgiving-sg-ad {
+		padding-bottom:100%;
+	}
+
+	#tsga__white-box {
+		top:4%;
+		left:4%;
+		height:92%;
+		width:92%;
+		max-width:initial;
+		min-width:initial;
+	}
+
+	#tsga__text-box {
+		width:84%;
+		height:65%;
+		margin:6% auto 7%;
+		line-height:2.8em;
+		font-size:1.2em;
+	}
+
+	.centering {
+		margin:0 auto;
+		left:0;
+		top:50%;
+		-webkit-transform:translateY(-50%);
+		-moz-transform:translateY(-50%);
+		-ms-transform:translateY(-50%); /* for IE9+; if need IE8- use another method */
+		-o-transform:translateY(-50%);
+		transform:translateY(-50%);
+	}
+
+	#tsga__go-button {
+		width:35%;
+		height:42px;
+	}
+
+	#tsga__go-button a {
+		font-size:1.5em;
+	}
+}
+
+@media screen and (max-width:388px) {
+	#tsga__text-box {font-size:1.05em;}
+}
+
+@media screen and (max-width:348px) {
+	#tsga__text-box {font-size:0.95em;}
+}
