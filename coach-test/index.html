@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+
+<!-- NOTE: Meant to work for IE9+. If need greater support, would need to change a few things. -->
+
+<meta charset="utf-8" />
+
+<title>Coach Test by Tim Aikens</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link href='assets/coachteststyle.css' rel='stylesheet' type='text/css' />
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css' />
+
+</head>
+<body>
+
+<div id="carousel-wrap">
+
+	<ul id="slides-list">
+		<!-- Could add photo elements with JS using array of URLs -->
+		<li id="slide1" class="slide show" style="background-image: url('assets/images/slide1.jpg');"></li>
+		<li id="slide2" class="slide hide-right" style="background-image: url('assets/images/slide2.jpg');"></li>
+		<li id="slide3" class="slide hide-left" style="background-image: url('assets/images/slide3.jpg');"></li>
+	</ul>
+
+	<div id="change-slide-left" class="change-slide td3"></div>
+	<div id="change-slide-right" class="change-slide td3"></div>
+
+	<div id="carousel-dots" class="td3">
+		<!-- Could add dot elements with JS based on the number of photos -->
+		<span class="dot td3 active"></span>
+		<span class="dot td3"></span>
+		<span class="dot td3"></span>
+	</div>
+
+	<p id="carousel-text">COACH</p>
+
+</div>
+
+<div id="video-wrap">
+	<video id="buffalo-video" src="https://assets.coach.com/media/web-production/20150325/buffalo.mp4" poster="assets/images/videoposter.jpg" preload="metadata">
+		<p>Sorry, your browser doesn't support this type of embedded video. <a href="https://assets.coach.com/media/web-production/20150325/buffalo.mp4" target="_blank">Download it instead</a>.</p>
+	</video>
+	<div id="paused-video-play-button" class="td3" style="background:transparent url('assets/images/play.png') center/cover no-repeat;"></div>
+	<a id="play-video" class="td3" href="">WATCH THE VIDEO</a>
+</div>
+
+
+<script src="assets/coachtestscript.js" type="text/javascript"></script>
+
+</body>
+</html>
