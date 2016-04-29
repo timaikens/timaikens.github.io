@@ -366,13 +366,10 @@ function setTextOf(ele, to) {
 	} else if("innerText" in ele) {ele.innerText = to;}
 }
 
-// function isInside(node, target) {for(; node !== null; node = node.parentNode){if(node == target) {return true;}}}
-
 function makeList() {
 	for(var i = 0; i < sites.length; i++) {
 		var li = document.createElement("li");
 		li.className = "site-name";
-		// li.setAttribute("data-img", sites[i].img.replace(".","-"));
 		li.setAttribute("data-index", i);
 		if(sites[i].status) {
 			if(sites[i].status == "like") {li.className += " like";}
@@ -386,16 +383,8 @@ function makeList() {
 		(function(){
 			li.addEventListener("mouseover",function(e){
 				window.scrollTo(0,0);
-				// e.preventDefault();
 				var tl = e.target;
 				if(!hasClass(tl,"site-name")) {tl = tl.parentNode;}
-				/*for(var k = 0; k < imageList.length; k++) {
-					if(imageList[k].id == tl.getAttribute("data-img")) {
-						addClass(imageList[k], "show");
-					} else {
-						removeClass(imageList[k], "show");
-					}
-				}*/
 				var nim = document.getElementsByClassName("show");
 				if(nim.length > 0) {
 					for(var k = 0; k < nim.length; k++) {
