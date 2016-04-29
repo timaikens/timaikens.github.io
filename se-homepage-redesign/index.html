@@ -127,7 +127,7 @@ a:after {right:50%;}
 #key {
 	font-style: italic;
 	font-size: 0.8em;
-	color: #999;
+	color: #777777;
 	margin-top: 32px;
 	padding: 0 10px;
 }
@@ -366,12 +366,14 @@ function setTextOf(ele, to) {
 	} else if("innerText" in ele) {ele.innerText = to;}
 }
 
-function isInside(node, target) {for(; node !== null; node = node.parentNode){if(node == target) {return true;}}}
+// function isInside(node, target) {for(; node !== null; node = node.parentNode){if(node == target) {return true;}}}
 
 function makeList() {
 	for(var i = 0; i < sites.length; i++) {
 		var li = document.createElement("li");
 		li.className = "site-name";
+		// li.setAttribute("data-img", sites[i].img.replace(".","-"));
+		li.setAttribute("data-index", i);
 		if(sites[i].status) {
 			if(sites[i].status == "like") {li.className += " like";}
 			if(sites[i].status == "hate") {li.className += " hate";}
@@ -380,32 +382,35 @@ function makeList() {
 		setTextOf(a, sites[i].url);
 		a.setAttribute("href", "http://" + sites[i].url);
 		a.setAttribute("target", "_blank");
-		a.setAttribute("data-img", sites[i].img.replace(".","-"));
 
 		(function(){
 			li.addEventListener("mouseover",function(e){
 				window.scrollTo(0,0);
 				// e.preventDefault();
-				var tl;
-				// if() {}
-				tl = e.target;
-				var tla = tl.childNodes[0];
-				// console.log(tl);
-				for(var k = 0; k < imageList.length; k++) {
-					// console.log(k);
-					// console.log(imageList[k]);
-					// console.log(tl.getAttribute("data-img"));
-					if(imageList[k].id == tla.getAttribute("data-img")) {
+				var tl = e.target;
+				if(!hasClass(tl,"site-name")) {tl = tl.parentNode;}
+				/*for(var k = 0; k < imageList.length; k++) {
+					if(imageList[k].id == tl.getAttribute("data-img")) {
 						addClass(imageList[k], "show");
-						// console.log("true");
 					} else {
 						removeClass(imageList[k], "show");
-						// console.log("false");
+					}
+				}*/
+				var nim = document.getElementsByClassName("show");
+				if(nim.length > 0) {
+					for(var k = 0; k < nim.length; k++) {
+						removeClass(nim[k], "show");
 					}
 				}
-				var ntl = document.getElementsByClassName("site-name");
-				for(var l=0; l<ntl.length; l++) {
-					removeClass(ntl[l], "selected");
+				var indx = parseInt(tl.getAttribute("data-index"));
+				addClass(imageList[indx], "show");
+				console.log(nim);
+
+				var ntl = document.getElementsByClassName("selected");
+				if(ntl.length > 0) {
+					for(var l=0; l<ntl.length; l++) {
+						removeClass(ntl[l], "selected");
+					}
 				}
 				addClass(tl, "selected");
 			});
