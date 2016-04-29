@@ -55,11 +55,14 @@ a {
 
 .mobile-only {display:none;}
 
-h1 {
+h1, h2 {
 	font-family:'Montserrat', sans-serif;
 	font-weight:bold;
 	font-size:2em;
 	color:#F0544F;
+}
+
+h1 {
 	margin-top:0;
 	margin-bottom: 1em;
 	padding-bottom: 0.25em;
@@ -69,7 +72,7 @@ h1 {
 a, p, .site-name.selected:before {
 	font-family:'Raleway', sans-serif;
 	/*font-style:italic;*/
-	font-size:1.1em;
+	font-size:1em;
 	color:#3A3335;
 }
 
@@ -106,7 +109,7 @@ a:after {right:50%;}
 	height:100vh;
 	overflow:scroll;
 	/*float: left;*/
-	padding: 50px 0 50px 3%;
+	padding: 44px 0 50px 3%;
 }
 
 #site-list {
@@ -120,6 +123,24 @@ a:after {right:50%;}
 
 .site-name.like {background-color: rgba(33,100,103,0.2);}
 .site-name.hate {background-color: rgba(240,84,79,0.3);}
+
+#key {
+	font-style: italic;
+	font-size: 0.8em;
+	color: #999;
+	margin-top: 32px;
+	padding: 0 10px;
+}
+
+.key-box {
+	display: inline-block;
+	height: 14px;
+	width: 14px;
+  vertical-align: -17%;
+}
+
+.key-box#kb-like {background-color: rgba(33,100,103,0.2);}
+.key-box#kb-hate {background-color: rgba(240,84,79,0.3);}
 
 .site-name a {
 	display: inline-block;
@@ -165,6 +186,31 @@ a:after {right:50%;}
 	height: auto;
 }
 
+#loading {
+	z-index: 9999;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: #FFFFF5;
+	text-align: center;
+}
+
+#loading h2 {
+	display: block;
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%,-50%);
+	-moz-transform: translate(-50%,-50%);
+	-ms-transform: translate(-50%,-50%);
+	-o-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
+}
+
 </style>
 	
 </head>
@@ -173,10 +219,13 @@ a:after {right:50%;}
 <div id="list-wrap">
 	<h1>Competitors' Homepages</h1>
 	<ul id="site-list"></ul>
+	<p id="key"><span id="kb-like" class="key-box"></span> = like&nbsp;&nbsp;&nbsp;&nbsp;<span id="kb-hate" class="key-box"></span> = hate, hate, hate</p>
 </div>
 <div id="image-container">
 	<div id="image-wrap"></div>
 </div>
+
+<div id="loading"><h2>LOADING...</h2></div>
 
 <script>
 
@@ -352,7 +401,7 @@ function makeList() {
 					}
 					addClass(tl, "selected");
 				}
-			}, false);
+			});
 		})();
 
 		li.appendChild(a);
@@ -368,7 +417,11 @@ function makeList() {
 }
 makeList();
 
-window.addEventListener("load", function(){imageList = document.getElementsByClassName("page-image");console.log(imageList);});
+window.addEventListener("load", function(){
+	document.getElementById("loading").style.display = "none";
+	imageList = document.getElementsByClassName("page-image");
+	console.log(imageList);
+});
 
 </script>
 </body>
