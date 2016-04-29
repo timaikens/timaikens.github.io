@@ -402,12 +402,12 @@ function makeList() {
 						removeClass(imageList[k], "show");
 						// console.log("false");
 					}
-					var ntl = document.getElementsByClassName("site-name");
-					for(var l=0; l<ntl.length; l++) {
-						removeClass(ntl[l], "selected");
-					}
-					addClass(tl, "selected");
 				}
+				var ntl = document.getElementsByClassName("site-name");
+				for(var l=0; l<ntl.length; l++) {
+					removeClass(ntl[l], "selected");
+				}
+				addClass(tl, "selected");
 			});
 		})();
 
