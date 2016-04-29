@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+
+	<title>Serious Eats Homepage Redesign Ideas</title>
+
+	<meta charset="utf-8" />
+	<meta name="description" content="Serious Eats Homepage Redesign Ideas" />
+	<meta name="keywords" content="homepages" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway' rel='stylesheet' type='text/css'>
+
+	<!-- <link rel="icon" type="image/png" href="favicon-32.png"> -->
+
+<style>
+
+html {
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+
+*, *:before, *:after {
+	-webkit-box-sizing:inherit;
+	-moz-box-sizing:inherit;
+	box-sizing:inherit;
+}
+
+html, body {
+	width:100%;
+	/*height:100%;*/
+	margin:0;
+	padding:0;
+	font-size:1em;
+	background-color:#FFFFF5;
+	text-align:left;
+}
+
+body {
+	/*position: relative;*/
+}
+
+a {
+	text-decoration:none;
+}
+
+.td3 {
+	-webkit-transition-duration:0.3s;
+	-moz-transition-duration:0.3s;
+	-o-transition-duration:0.3s;
+	transition-duration:0.3s;
+}
+
+.mobile-only {display:none;}
+
+h1 {
+	font-family:'Montserrat', sans-serif;
+	font-weight:bold;
+	font-size:2em;
+	color:#F0544F;
+	margin-top:0;
+}
+
+#site-list {}
+
+li {
+	margin: 0.5em 0;
+}
+
+a, p {
+	font-family:'Raleway', sans-serif;
+	/*font-style:italic;*/
+	font-size:1.1em;
+	color:#3A3335;
+}
+
+a {
+	position:relative;
+	color:#91A99F;
+}
+
+a:before, a:after {
+	content:"";
+	position:absolute;
+	bottom:-0.16em;
+	height:4px;
+	width:0;
+	background-color:#F0544F;
+	-webkit-transition-duration:inherit;
+	-moz-transition-duration:inherit;
+	-o-transition-duration:inherit;
+	transition-duration:inherit;
+}
+
+a:before {left:50%;}
+a:after {right:50%;}
+
+@media (min-width: 850px) {
+	a:hover:before, a:hover:after {width:50%;}
+}
+
+#list-wrap {
+	width: 25%;
+	float: left;
+}
+
+#site-list {
+	list-style-type: none;
+}
+
+#image-container {
+	position: relative;
+	width: 70%;
+	height: 2000px;
+	padding-right: 70px;
+	float: right;
+}
+
+#image-wrap {
+	position:relative;
+	width: 100%;
+	height: 100%;
+	background-color: #DDD;
+}
+
+.page-image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	opacity: 0;
+}
+
+.page-image.show {opacity: 1;}
+
+</style>
+	
+</head>
+<body>
+
+<div id="list-wrap">
+	<h1>Competitors' Homepages</h1>
+	<ul id="site-list"></ul>
+</div>
+<div id="image-container">
+	<div id="image-wrap"></div>
+</div>
+
+<script>
+
+var sites = [
+	{
+		url: "allrecipes.com",
+		img: "all-recipes.png"
+	},{
+		url: "biscuitsandsuch.com",
+		img: "biscuits-and-such.png"
+	},{
+		url: "bonappetit.com",
+		img: "bon-appetit.png"
+	},{
+		url: "chowhound.com",
+		img: "chowhound.png",
+		status: "hate"
+	},{
+		url: "cookinglight.com",
+		img: "cooking-light.png"
+	},{
+		url: "cooks.com",
+		img: "cooks.png",
+		status: "hate"
+	},{
+		url: "damndelicious.com",
+		img: "damn-delicious.png"
+	},{
+		url: "delish.com",
+		img: "delish.png"
+	},{
+		url: "dishoom.com",
+		img: "dishoom.png"
+	},{
+		url: "eater.com",
+		img: "eater.png",
+		status: "hate"
+	},{
+		url: "epicurious.com",
+		img: "epicurious.png"
+	},{
+		url: "food52.com",
+		img: "food-52.png"
+	},{
+		url: "foodandwine.com",
+		img: "food-and-wine.png"
+	},{
+		url: "food.com",
+		img: "food-com.png"
+	},{
+		url: "luckypeach.com",
+		img: "lucky-peach.png"
+	},{
+		url: "marthastewart.com",
+		img: "martha-stewart.png"
+	},{
+		url: "munchies.vice.com",
+		img: "munchies.png"
+	},{
+		url: "myrecipes.com",
+		img: "my-recipes.png"
+	},{
+		url: "food.nationalgeographic.com",
+		img: "nat-geo-food.png"
+	},{
+		url: "cooking.nytimes.com",
+		img: "ny-times-cooking.png"
+	},{
+		url: "oola.com",
+		img: "oola.png",
+		status: "like"
+	},{
+		url: "simplyrecipes.com",
+		img: "simply-recipes.png"
+	},{
+		url: "skinnytaste.com",
+		img: "skinny-taste.png"
+	},{
+		url: "spoonuniversity.com",
+		img: "spoon-university.png"
+	},{
+		url: "tasteofhome.com",
+		img: "taste-of-home.png"
+	},{
+		url: "thekitchn.com",
+		img: "the-kitchn.png"
+	},{
+		url: "yummly.com",
+		img: "yummly.png"
+	}
+];
+
+var list = document.getElementById("site-list");
+var imageWrap = document.getElementById("image-wrap");
+var imageList = [];
+
+function setTextOf(ele, to) {
+	if("textContent" in ele) {ele.textContent = to;
+	} else if("innerText" in ele) {ele.innerText = to;}
+}
+
+function makeList() {
+	for(var i = 0; i < sites.length; i++) {
+		var li = document.createElement("li");
+		li.className = "site-name";
+		if(sites[i].status) {
+			if(sites[i].status == "like") {li.className += " like";}
+			if(sites[i].status == "hate") {li.className += " hate";}
+		}
+		var a = document.createElement("a");
+		setTextOf(a, sites[i].url);
+		a.setAttribute("href", "www." + sites[i].url);
+		a.setAttribute("target", "_blank");
+		a.setAttribute("data-img", sites[i].img);
+
+		li.appendChild(a);
+		list.appendChild(li);
+
+		var img = document.createElement("img");
+		img.setAttribute("src", "images/" + sites[i].img);
+		img.setAttribute("alt", sites[i].url);
+		img.className = "page-image";
+		img.id = sites[i].img;
+		imageWrap.appendChild(img);
+
+		li.addEventListener("mouseover",function(e){
+			var tl = e.target;
+			for(var k = 0; k < imageList.length; k++) {
+				if(imageList[k].id == tl.data-img) {
+					imageList[k].className = "page-image show";
+				} else {
+					imageList[k].className = "page-image";
+				}
+			}
+		});
+	}
+}
+makeList();
+
+window.addEventListener("load", function(){imageList = document.getElementsByClassName("page-image");console.log(imageList);});
+
+</script>
+</body>
+</html>
