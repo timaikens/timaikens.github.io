@@ -66,14 +66,14 @@ h1 {
 	border-bottom: 4px solid #F0544F;
 }
 
-a, p {
+a, p, .site-name.selected:before {
 	font-family:'Raleway', sans-serif;
 	/*font-style:italic;*/
 	font-size:1.1em;
 	color:#3A3335;
 }
 
-a {
+a, .site-name.selected:before {
 	position:relative;
 	color:#91A99F;
 }
@@ -103,8 +103,10 @@ a:after {right:50%;}
 	top: 0;
 	left: 0;
 	width: 25%;
+	height:100vh;
+	overflow:scroll;
 	/*float: left;*/
-	padding: 50px 0 0 3%;
+	padding: 50px 0 50px 3%;
 }
 
 #site-list {
@@ -112,8 +114,26 @@ a:after {right:50%;}
 	padding: 0;
 }
 
-#site-list li {
-	margin: 0.5em 0;
+.site-name {
+	padding: 0.5em 10px;
+}
+
+.site-name.like {background-color: rgba(33,100,103,0.2);}
+.site-name.hate {background-color: rgba(240,84,79,0.3);}
+
+.site-name a {
+	display: inline-block;
+	/*padding: 0.5em 10px;*/
+}
+
+.site-name.selected a {color:#65766f;}
+
+.site-name.selected:before {
+	content: "\00BB\00A0\00A0";
+	display: inline;
+	color:#65766f;
+	position:relative;
+	top:-1px;
 }
 
 #image-container {
@@ -160,6 +180,32 @@ a:after {right:50%;}
 
 <script>
 
+/* ============================================================
+ * Class manipulation functions adapted from http://jaketrent.com/post/addremove-classes-raw-javascript/
+ *   - Added expression to avoid stacking white space from removeClass
+ *
+ * Copyright Â© 2015 Jake Trent
+ * All rights reserved.
+ * CC3.0 Attribution License (http://creativecommons.org/licenses/by/3.0/us/)
+ * ============================================================ */
+
+function hasClass(ele,cls) {
+	return !!ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
+}
+
+function addClass(ele,cls) {
+	if (!hasClass(ele,cls)) ele.className += " "+cls;
+}
+
+function removeClass(ele,cls) {
+	if (hasClass(ele,cls)) {
+		var reg = new RegExp('(\\s+|^)'+cls+'(\\s+|$)');
+		ele.className=ele.className.replace(reg,' ');
+	}
+}
+
+/* ============================================================ */
+
 var sites = [
 	{
 		url: "allrecipes.com",
@@ -182,7 +228,7 @@ var sites = [
 		img: "cooks.png",
 		status: "hate"
 	},{
-		url: "damndelicious.com",
+		url: "damndelicious.net",
 		img: "damn-delicious.png"
 	},{
 		url: "delish.com",
@@ -199,22 +245,26 @@ var sites = [
 		img: "epicurious.png"
 	},{
 		url: "food52.com",
-		img: "food-52.png"
+		img: "food-52.png",
+		status: "like"
 	},{
 		url: "foodandwine.com",
 		img: "food-and-wine.png"
 	},{
 		url: "food.com",
-		img: "food-com.png"
+		img: "food-com.png",
+		status: "hate"
 	},{
 		url: "luckypeach.com",
-		img: "lucky-peach.png"
+		img: "lucky-peach.png",
+		status: "like"
 	},{
 		url: "marthastewart.com",
 		img: "martha-stewart.png"
 	},{
 		url: "munchies.vice.com",
-		img: "munchies.png"
+		img: "munchies.png",
+		status: "like"
 	},{
 		url: "myrecipes.com",
 		img: "my-recipes.png"
@@ -223,7 +273,8 @@ var sites = [
 		img: "nat-geo-food.png"
 	},{
 		url: "cooking.nytimes.com",
-		img: "ny-times-cooking.png"
+		img: "ny-times-cooking.png",
+		status: "like"
 	},{
 		url: "oola.com",
 		img: "oola.png",
@@ -242,7 +293,8 @@ var sites = [
 		img: "taste-of-home.png"
 	},{
 		url: "thekitchn.com",
-		img: "the-kitchn.png"
+		img: "the-kitchn.png",
+		status: "like"
 	},{
 		url: "yummly.com",
 		img: "yummly.png"
@@ -258,6 +310,8 @@ function setTextOf(ele, to) {
 	} else if("innerText" in ele) {ele.innerText = to;}
 }
 
+function isInside(node, target) {for(; node !== null; node = node.parentNode){if(node == target) {return true;}}}
+
 function makeList() {
 	for(var i = 0; i < sites.length; i++) {
 		var li = document.createElement("li");
@@ -272,6 +326,35 @@ function makeList() {
 		a.setAttribute("target", "_blank");
 		a.setAttribute("data-img", sites[i].img.replace(".","-"));
 
+		(function(){
+			li.addEventListener("mouseover",function(e){
+				window.scrollTo(0,0);
+				// e.preventDefault();
+				var tl;
+				// if() {}
+				tl = e.target;
+				var tla = tl.childNodes[0];
+				// console.log(tl);
+				for(var k = 0; k < imageList.length; k++) {
+					// console.log(k);
+					// console.log(imageList[k]);
+					// console.log(tl.getAttribute("data-img"));
+					if(imageList[k].id == tla.getAttribute("data-img")) {
+						addClass(imageList[k], "show");
+						// console.log("true");
+					} else {
+						removeClass(imageList[k], "show");
+						// console.log("false");
+					}
+					var ntl = document.getElementsByClassName("site-name");
+					for(var l=0; l<ntl.length; l++) {
+						removeClass(ntl[l], "selected");
+					}
+					addClass(tl, "selected");
+				}
+			}, false);
+		})();
+
 		li.appendChild(a);
 		list.appendChild(li);
 
@@ -281,26 +364,6 @@ function makeList() {
 		img.className = "page-image";
 		img.id = sites[i].img.replace(".","-");
 		imageWrap.appendChild(img);
-
-		(function(){
-			a.addEventListener("mouseover",function(e){
-				// e.preventDefault();
-				var tl = e.target;
-				// console.log(tl);
-				for(var k = 0; k < imageList.length; k++) {
-					// console.log(k);
-					// console.log(imageList[k]);
-					// console.log(tl.getAttribute("data-img"));
-					if(imageList[k].id == tl.getAttribute("data-img")) {
-						imageList[k].className = "page-image show";
-						console.log("true");
-					} else {
-						imageList[k].className = "page-image";
-						console.log("false");
-					}
-				}
-			});
-		})();
 	}
 }
 makeList();
