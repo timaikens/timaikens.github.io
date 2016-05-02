@@ -93,8 +93,8 @@ a, span, .site-name.selected:before {
 a:before, a:after {
 	content:"";
 	position:absolute;
-	bottom:-0.16em;
-	height:4px;
+	bottom:-0.13em;
+	height:2px;
 	width:0;
 	background-color:#F0544F;
 	-webkit-transition-duration:inherit;
@@ -123,15 +123,27 @@ a:after {right:50%;}
 
 #list-wrap::-webkit-scrollbar { width: 0 !important }
 
-#site-list {
+.site-list {
 	list-style-type: none;
 	padding: 0;
 	text-align: left;
 }
 
+.site-list.indented {
+	padding-left: 1em;
+}
+
 .site-name {
 	padding: 0.5em 10px;
 	max-width: 700px;
+}
+
+.site-name.style-two {
+	padding: 0.2em 10px;
+}
+
+.site-name.style-two:first-of-type {
+	padding-top: 0;
 }
 
 .site-name.like {background-color: rgba(33,100,103,0.2);}
@@ -248,13 +260,26 @@ iframe {
 <body>
 
 <div class="centering">
-	<ul id="site-list"><h2>PDF Mock-Ups:</h2>
+	<ul class="site-list"><h2>PDF Mock-Ups:</h2>
 		
-		<li class="site-name"><p>A few ideas for above the fold. The first two are basically full screen, with a slightly modified nav bar at the top and the logo overlapping the featured panel. Mock-up 1 is a carousel (also see animation below). Versions 3 and 4 are more traditional and have gutters between elements. These would not be full-screen, but some set height based on screen width.</p><p><span>&#8594; </span><a href="pdfs/hp-redesign-above-fold.pdf">Ideas for above the fold (new format)</a></p></li>
-		<li class="site-name"><p>For below the featured section, I was thinking we'd stick with one of the few blockpost formats we currently have in place. Maybe with a slight visual update.</p><p><span>&#8594; </span><a href="pdfs/hp-redesign-below-fold.pdf">Ideas for below the fold (existing blockpost format)</a></p></li>
-
+		<li class="site-name">
+			<p>A few ideas for above the fold. The first two are basically full screen, with a slightly modified nav bar at the top and the logo overlapping the featured panel. Mock-up 1 is a carousel (also see animation below). Versions 3 and 4 are more traditional and have gutters between elements. These would not be full-screen, but some set height based on screen width. Spacing/size on any can be adjusted, and any styles mixed and matched.</p>
+			<p>Ideas for below the fold (new format):</p>
+			<ul class="site-list indented">
+				<li class="site-name style-two"><span>&#8594; </span><a href="pdfs/hp-redesign-above-fold-1.pdf">Idea 1 &ndash; Full-screen carousel</a></li>
+				<li class="site-name style-two"><span>&#8594; </span><a href="pdfs/hp-redesign-above-fold-2.pdf">Idea 2 &ndash; Full-screen with smaller on side</a></li>
+				<li class="site-name style-two"><span>&#8594; </span><a href="pdfs/hp-redesign-above-fold-3.pdf">Idea 3 &ndash; Traditional with overlaid text</a></li>
+				<li class="site-name style-two"><span>&#8594; </span><a href="pdfs/hp-redesign-above-fold-4.pdf">Idea 4 &ndash; Traditional with side text</a></li>
+			</ul>
+		</li>	
+		<li class="site-name">
+			<p>For below the featured section, I was thinking we'd stick with one of the few blockpost formats we currently have in place. Maybe with a slight visual update.</p>
+			<ul class="site-list indented">
+				<li class="site-name style-two"><span>&#8594; </span><a href="pdfs/hp-redesign-below-fold.pdf">Ideas for below the fold (existing blockpost format)</a></li>
+			</ul>
+		</li>
 	</ul>
-	<ul id="site-list"><h2>Animations</h2><!-- <h3>Best viewed in QuickTime with <code>View > Loop</code> turned on (shortcut: <code>&#8997;&#8984;L</code>)</h3> -->
+	<ul class="site-list"><h2>Animations</h2><!-- <h3>Best viewed in QuickTime with <code>View > Loop</code> turned on (shortcut: <code>&#8997;&#8984;L</code>)</h3> -->
 		
 		<!-- <li class="site-name"><p><span>&#8594; </span><a href="anim/carousel-anim.mov">Carousel Animation (.mov)</a></p></li> -->
 		<!-- <li class="site-name"><p><span>&#8594; </span><a href="https://vimeo.com/165056199" target="_blank">Carousel Animation (.mov)</a></p></li> -->
