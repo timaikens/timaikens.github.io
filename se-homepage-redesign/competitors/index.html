@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+
+	<title>SE Homepage Redesign Ideas</title>
+
+	<meta charset="utf-8" />
+	<meta name="description" content="Serious Eats Homepage Redesign Ideas" />
+	<meta name="keywords" content="homepages" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway' rel='stylesheet' type='text/css'>
+
+	<!-- <link rel="icon" type="image/png" href="favicon-32.png"> -->
+
+<style>
+
+html {
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+
+*, *:before, *:after {
+	-webkit-box-sizing:inherit;
+	-moz-box-sizing:inherit;
+	box-sizing:inherit;
+}
+
+html, body {
+	width:100%;
+	/*height:100%;*/
+	margin:0;
+	padding:0;
+	font-size:1em;
+	background-color:#FFFFF5;
+	text-align:left;
+}
+
+body {
+	/*position: relative;*/
+	/*padding-top: 3em;*/
+}
+
+a {
+	text-decoration:none;
+}
+
+.td3 {
+	-webkit-transition-duration:0.3s;
+	-moz-transition-duration:0.3s;
+	-o-transition-duration:0.3s;
+	transition-duration:0.3s;
+}
+
+.mobile-only {display:none;}
+
+h1, h2 {
+	font-family:'Montserrat', sans-serif;
+	font-weight:bold;
+	font-size:2em;
+	color:#F0544F;
+}
+
+h1 {
+	margin-top:0;
+	margin-bottom: 1em;
+	padding: 0 10px 0.25em;
+	border-bottom: 4px solid #F0544F;
+}
+
+a, p, .site-name.selected:before {
+	font-family:'Raleway', sans-serif;
+	/*font-style:italic;*/
+	font-size:1em;
+	color:#3A3335;
+}
+
+a, .site-name.selected:before {
+	position:relative;
+	color:#91A99F;
+}
+
+a:before, a:after {
+	content:"";
+	position:absolute;
+	bottom:-0.16em;
+	height:4px;
+	width:0;
+	background-color:#F0544F;
+	-webkit-transition-duration:inherit;
+	-moz-transition-duration:inherit;
+	-o-transition-duration:inherit;
+	transition-duration:inherit;
+}
+
+a:before {left:50%;}
+a:after {right:50%;}
+
+@media (min-width: 850px) {
+	a:hover:before, a:hover:after {width:50%;}
+}
+
+#list-wrap {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 25%;
+	height:100vh;
+	overflow:scroll;
+	/*float: left;*/
+	padding: 44px 0 50px 3%;
+}
+
+#list-wrap::-webkit-scrollbar { width: 0 !important }
+
+#site-list {
+	list-style-type: none;
+	padding: 0;
+}
+
+.site-name {
+	padding: 0.5em 10px;
+}
+
+.site-name.like {background-color: rgba(33,100,103,0.2);}
+.site-name.hate {background-color: rgba(240,84,79,0.3);}
+
+#key {
+	font-style: italic;
+	font-size: 0.8em;
+	color: #777777;
+	margin-top: 32px;
+	padding: 0 10px;
+}
+
+.key-box {
+	display: inline-block;
+	height: 14px;
+	width: 14px;
+  vertical-align: -17%;
+}
+
+.key-box#kb-like {background-color: rgba(33,100,103,0.2);}
+.key-box#kb-hate {background-color: rgba(240,84,79,0.3);}
+
+.site-name a {
+	display: inline-block;
+	/*padding: 0.5em 10px;*/
+}
+
+.site-name.selected a {color:#65766f;}
+
+.site-name.selected:before {
+	content: "\00BB\00A0\00A0";
+	display: inline;
+	color:#65766f;
+	position:relative;
+	top:-1px;
+}
+
+#image-container {
+	position: relative;
+	width: 70%;
+	height: 600px;
+	padding: 50px 70px 50px 0;
+	float: right;
+}
+
+#image-wrap {
+	position:relative;
+	width: 100%;
+	height: 100%;
+	background-color: #DDD;
+}
+
+.page-image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 0;
+	opacity: 0;
+	margin-bottom: 70px;
+	-webkit-box-shadow: 0 1px 8px 2px #BBB;
+	-moz-box-shadow: 0 1px 8px 2px #BBB;
+  box-shadow: 0 1px 8px 2px #BBB;
+}
+
+.page-image.show {
+	opacity: 1;
+	height: auto;
+}
+
+#loading {
+	z-index: 9999;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: #FFFFF5;
+	text-align: center;
+}
+
+#loading h2 {
+	display: block;
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%,-50%);
+	-moz-transform: translate(-50%,-50%);
+	-ms-transform: translate(-50%,-50%);
+	-o-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
+}
+
+</style>
+	
+</head>
+<body>
+
+<div id="list-wrap">
+	<h1>Competitors' Homepages</h1>
+	<ul id="site-list"></ul>
+	<p id="key"><span id="kb-like" class="key-box"></span> = like&nbsp;&nbsp;&nbsp;&nbsp;<span id="kb-hate" class="key-box"></span> = hate, hate, hate</p>
+</div>
+<div id="image-container">
+	<div id="image-wrap"></div>
+</div>
+
+<div id="loading"><h2>LOADING...</h2></div>
+
+<script>
+
+/* ============================================================
+ * Class manipulation functions adapted from http://jaketrent.com/post/addremove-classes-raw-javascript/
+ *   - Added expression to avoid stacking white space from removeClass
+ *
+ * Copyright Â© 2015 Jake Trent
+ * All rights reserved.
+ * CC3.0 Attribution License (http://creativecommons.org/licenses/by/3.0/us/)
+ * ============================================================ */
+
+function hasClass(ele,cls) {
+	return !!ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
+}
+
+function addClass(ele,cls) {
+	if (!hasClass(ele,cls)) ele.className += " "+cls;
+}
+
+function removeClass(ele,cls) {
+	if (hasClass(ele,cls)) {
+		var reg = new RegExp('(\\s+|^)'+cls+'(\\s+|$)');
+		ele.className=ele.className.replace(reg,' ');
+	}
+}
+
+/* ============================================================ */
+
+var sites = [
+	{
+		url: "allrecipes.com",
+		img: "all-recipes.jpg"
+	},{
+		url: "biscuitsandsuch.com",
+		img: "biscuits-and-such.jpg",
+		status: "like"
+	},{
+		url: "bonappetit.com",
+		img: "bon-appetit.jpg",
+		status: "like"
+	},{
+		url: "chowhound.com",
+		img: "chowhound.jpg",
+		status: "hate"
+	},{
+		url: "cookinglight.com",
+		img: "cooking-light.jpg"
+	},{
+		url: "cooks.com",
+		img: "cooks.jpg",
+		status: "hate"
+	},{
+		url: "damndelicious.net",
+		img: "damn-delicious.jpg"
+	},{
+		url: "delish.com",
+		img: "delish.jpg"
+	},{
+		url: "dishoom.com",
+		img: "dishoom.jpg"
+	},{
+		url: "eater.com",
+		img: "eater.jpg",
+		status: "hate"
+	},{
+		url: "epicurious.com",
+		img: "epicurious.jpg",
+		status: "like"
+	},{
+		url: "food52.com",
+		img: "food-52.jpg",
+		status: "like"
+	},{
+		url: "foodandwine.com",
+		img: "food-and-wine.jpg"
+	},{
+		url: "food.com",
+		img: "food-com.jpg",
+		status: "hate"
+	},{
+		url: "luckypeach.com",
+		img: "lucky-peach.jpg",
+		status: "like"
+	},{
+		url: "marthastewart.com",
+		img: "martha-stewart.jpg"
+	},{
+		url: "munchies.vice.com",
+		img: "munchies.jpg",
+		status: "like"
+	},{
+		url: "myrecipes.com",
+		img: "my-recipes.jpg"
+	},{
+		url: "food.nationalgeographic.com",
+		img: "nat-geo-food.jpg"
+	},{
+		url: "cooking.nytimes.com",
+		img: "ny-times-cooking.jpg",
+		status: "like"
+	},{
+		url: "oola.com",
+		img: "oola.jpg",
+		status: "like"
+	},{
+		url: "simplyrecipes.com",
+		img: "simply-recipes.jpg"
+	},{
+		url: "skinnytaste.com",
+		img: "skinny-taste.jpg"
+	},{
+		url: "spoonuniversity.com",
+		img: "spoon-university.jpg"
+	},{
+		url: "tasteofhome.com",
+		img: "taste-of-home.jpg"
+	},{
+		url: "thekitchn.com",
+		img: "the-kitchn.jpg",
+		status: "like"
+	},{
+		url: "yummly.com",
+		img: "yummly.jpg"
+	}
+];
+
+var list = document.getElementById("site-list");
+var imageWrap = document.getElementById("image-wrap");
+var imageList = [];
+
+function setTextOf(ele, to) {
+	if("textContent" in ele) {ele.textContent = to;
+	} else if("innerText" in ele) {ele.innerText = to;}
+}
+
+function makeList() {
+	for(var i = 0; i < sites.length; i++) {
+		var li = document.createElement("li");
+		li.className = "site-name";
+		li.setAttribute("data-index", i);
+		if(sites[i].status) {
+			if(sites[i].status == "like") {li.className += " like";}
+			if(sites[i].status == "hate") {li.className += " hate";}
+		}
+		var a = document.createElement("a");
+		setTextOf(a, sites[i].url);
+		a.setAttribute("href", "http://" + sites[i].url);
+		a.setAttribute("target", "_blank");
+
+		(function(){
+			li.addEventListener("mouseover",function(e){
+				window.scrollTo(0,0);
+				var tl = e.target;
+				if(!hasClass(tl,"site-name")) {tl = tl.parentNode;}
+				var nim = document.getElementsByClassName("show");
+				if(nim.length > 0) {
+					for(var k = 0; k < nim.length; k++) {
+						removeClass(nim[k], "show");
+					}
+				}
+				var indx = parseInt(tl.getAttribute("data-index"));
+				addClass(imageList[indx], "show");
+				console.log(nim);
+
+				var ntl = document.getElementsByClassName("selected");
+				if(ntl.length > 0) {
+					for(var l=0; l<ntl.length; l++) {
+						removeClass(ntl[l], "selected");
+					}
+				}
+				addClass(tl, "selected");
+			});
+		})();
+
+		li.appendChild(a);
+		list.appendChild(li);
+
+		var img = document.createElement("img");
+		img.setAttribute("src", "images/" + sites[i].img);
+		img.setAttribute("alt", sites[i].url);
+		img.className = "page-image";
+		img.id = sites[i].img.replace(".","-");
+		imageWrap.appendChild(img);
+	}
+}
+makeList();
+
+window.addEventListener("load", function(){
+	document.getElementById("loading").style.display = "none";
+	imageList = document.getElementsByClassName("page-image");
+	console.log(imageList);
+});
+
+</script>
+</body>
+</html>

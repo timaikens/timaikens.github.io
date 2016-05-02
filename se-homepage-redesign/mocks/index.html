@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+
+	<title>SE Homepage Redesign Mock-Ups</title>
+
+	<meta charset="utf-8" />
+	<meta name="description" content="Serious Eats Homepage Redesign Mock-Ups" />
+	<meta name="keywords" content="homepages" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway' rel='stylesheet' type='text/css'>
+
+	<!-- <link rel="icon" type="image/png" href="favicon-32.png"> -->
+
+<style>
+
+html {
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+
+*, *:before, *:after {
+	-webkit-box-sizing:inherit;
+	-moz-box-sizing:inherit;
+	box-sizing:inherit;
+}
+
+html, body {
+	width:100%;
+	/*height:100%;*/
+	margin:0;
+	padding:0;
+	font-size:1em;
+	background-color:#FFFFF5;
+	text-align:center;
+}
+
+body {
+	/*position: relative;*/
+	/*padding-top: 3em;*/
+}
+
+a {
+	text-decoration:none;
+}
+
+.td3 {
+	-webkit-transition-duration:0.3s;
+	-moz-transition-duration:0.3s;
+	-o-transition-duration:0.3s;
+	transition-duration:0.3s;
+}
+
+.mobile-only {display:none;}
+
+h1, h2 {
+	font-family:'Montserrat', sans-serif;
+	font-weight:bold;
+	font-size:2em;
+	color:#F0544F;
+	margin-bottom: 0.1em;
+}
+
+h1 {
+	margin-top:0;
+	padding: 0 10px 0.25em;
+	border-bottom: 4px solid #F0544F;
+}
+
+a, p, h3, .site-name.selected:before {
+	font-family:'Raleway', sans-serif;
+	/*font-style:italic;*/
+	font-size:1em;
+	color:#3A3335;
+}
+
+h3 {
+	font-size: 1.1em;
+	margin: 0.6em 0 0.4em;
+}
+
+p {
+	margin: 0.7em;
+}
+
+a, span, .site-name.selected:before {
+	position:relative;
+	color:#91A99F;
+}
+
+a:before, a:after {
+	content:"";
+	position:absolute;
+	bottom:-0.16em;
+	height:4px;
+	width:0;
+	background-color:#F0544F;
+	-webkit-transition-duration:inherit;
+	-moz-transition-duration:inherit;
+	-o-transition-duration:inherit;
+	transition-duration:inherit;
+}
+
+a:before {left:50%;}
+a:after {right:50%;}
+
+@media (min-width: 850px) {
+	a:hover:before, a:hover:after {width:50%;}
+}
+
+#list-wrap {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 25%;
+	height:100vh;
+	overflow:scroll;
+	/*float: left;*/
+	padding: 44px 0 50px 3%;
+}
+
+#list-wrap::-webkit-scrollbar { width: 0 !important }
+
+#site-list {
+	list-style-type: none;
+	padding: 0;
+	text-align: left;
+}
+
+.site-name {
+	padding: 0.5em 10px;
+	max-width: 700px;
+}
+
+.site-name.like {background-color: rgba(33,100,103,0.2);}
+.site-name.hate {background-color: rgba(240,84,79,0.3);}
+
+#key {
+	font-style: italic;
+	font-size: 0.8em;
+	color: #777777;
+	margin-top: 32px;
+	padding: 0 10px;
+}
+
+.key-box {
+	display: inline-block;
+	height: 14px;
+	width: 14px;
+  vertical-align: -17%;
+}
+
+.key-box#kb-like {background-color: rgba(33,100,103,0.2);}
+.key-box#kb-hate {background-color: rgba(240,84,79,0.3);}
+
+.site-name a {
+	display: inline-block;
+	/*padding: 0.5em 10px;*/
+}
+
+.site-name.selected a {color:#65766f;}
+
+.site-name.selected:before {
+	content: "\00BB\00A0\00A0";
+	display: inline;
+	color:#65766f;
+	position:relative;
+	top:-1px;
+}
+
+#image-container {
+	position: relative;
+	width: 70%;
+	height: 600px;
+	padding: 50px 70px 50px 0;
+	float: right;
+}
+
+#image-wrap {
+	position:relative;
+	width: 100%;
+	height: 100%;
+	background-color: #DDD;
+}
+
+.page-image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 0;
+	opacity: 0;
+	margin-bottom: 70px;
+	-webkit-box-shadow: 0 1px 8px 2px #BBB;
+	-moz-box-shadow: 0 1px 8px 2px #BBB;
+  box-shadow: 0 1px 8px 2px #BBB;
+}
+
+.page-image.show {
+	opacity: 1;
+	height: auto;
+}
+
+#loading {
+	z-index: 9999;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: #FFFFF5;
+	text-align: center;
+}
+
+.centering {
+	display: inline-block;
+	position: relative;
+	margin: 2em; 0 0;
+	padding: 0;
+	/*top: 50%;*/
+	/*left: 50%;
+	-webkit-transform: translate(-50%,-50%);
+	-moz-transform: translate(-50%,-50%);
+	-ms-transform: translate(-50%,-50%);
+	-o-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);*/
+}
+
+code {
+	background-color: #EEE;
+	border: 1px solid #BBB;
+	color: #666;
+	border-radius: 3px;
+	padding: 2px 8px;
+	font-family: 'Courier Neue', 'Courier', monospace;
+	font-weight: normal;
+}
+
+iframe {
+	margin-top: 1em;
+}
+
+</style>
+	
+</head>
+<body>
+
+<div class="centering">
+	<ul id="site-list"><h2>PDF Mock-Ups:</h2>
+		
+		<li class="site-name"><p>A few ideas for above the fold. The first two are basically full screen, with a slightly modified nav bar at the top and the logo overlapping the featured panel. Mock-up 1 is a carousel (also see animation below). Versions 3 and 4 are more traditional and have gutters between elements. These would not be full-screen, but some set height based on screen width.</p><p><span>&#8594; </span><a href="pdfs/hp-redesign-above-fold.pdf">Ideas for above the fold (new format)</a></p></li>
+		<li class="site-name"><p>For below the featured section, I was thinking we'd stick with one of the few blockpost formats we currently have in place. Maybe with a slight visual update.</p><p><span>&#8594; </span><a href="pdfs/hp-redesign-below-fold.pdf">Ideas for below the fold (existing blockpost format)</a></p></li>
+
+	</ul>
+	<ul id="site-list"><h2>Animations</h2><h3>Best viewed in QuickTime with <code>View > Loop</code> turned on (shortcut: <code>&#8997;&#8984;L</code>)</h3>
+		
+		<li class="site-name"><p><span>&#8594; </span><a href="anim/carousel-anim.mov">Carousel Animation (.mov)</a></p></li>
+		<!-- <li class="site-name"><p><span>&#8594; </span><a href="https://vimeo.com/165056199" target="_blank">Carousel Animation (.mov)</a></p></li> -->
+		<li class="site-name">
+			<iframe src="https://player.vimeo.com/video/165056199?autoplay=1&loop=1" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+			<p>Permalink: <a href="https://vimeo.com/165056199">SE Homepage Carousel Animation</a></p>
+		</li>
+
+	</ul>
+</div>
+
+<script></script>
+</body>
+</html>

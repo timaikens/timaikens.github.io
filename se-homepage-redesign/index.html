@@ -2,14 +2,14 @@
 <html lang="en-US">
 <head>
 
-	<title>SE Homepage Redesign Ideas</title>
+	<title>SE Homepage Redesign</title>
 
 	<meta charset="utf-8" />
-	<meta name="description" content="Serious Eats Homepage Redesign Ideas" />
+	<meta name="description" content="Serious Eats Homepage Redesign" />
 	<meta name="keywords" content="homepages" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:400,600' rel='stylesheet' type='text/css'>
 
 	<!-- <link rel="icon" type="image/png" href="favicon-32.png"> -->
 
@@ -73,6 +73,7 @@ a, p, .site-name.selected:before {
 	font-family:'Raleway', sans-serif;
 	/*font-style:italic;*/
 	font-size:1em;
+	font-weight: 600;
 	color:#3A3335;
 }
 
@@ -203,7 +204,7 @@ a:after {right:50%;}
 	text-align: center;
 }
 
-#loading h2 {
+#loading-inner {
 	display: block;
 	position: absolute;
 	margin: 0;
@@ -222,210 +223,19 @@ a:after {right:50%;}
 </head>
 <body>
 
-<div id="list-wrap">
-	<h1>Competitors' Homepages</h1>
-	<ul id="site-list"></ul>
-	<p id="key"><span id="kb-like" class="key-box"></span> = like&nbsp;&nbsp;&nbsp;&nbsp;<span id="kb-hate" class="key-box"></span> = hate, hate, hate</p>
+<div id="loading">
+	<div id="loading-inner">
+		<h2><a href="mocks/">Mock-Ups &nbsp;&raquo;</a></h2>
+		<h2><a href="competitors/">Competitor Homepages &nbsp;&raquo;</a></h2>
+	</div>
 </div>
-<div id="image-container">
-	<div id="image-wrap"></div>
-</div>
-
-<div id="loading"><h2>LOADING...</h2></div>
 
 <script>
-
-/* ============================================================
- * Class manipulation functions adapted from http://jaketrent.com/post/addremove-classes-raw-javascript/
- *   - Added expression to avoid stacking white space from removeClass
- *
- * Copyright Â© 2015 Jake Trent
- * All rights reserved.
- * CC3.0 Attribution License (http://creativecommons.org/licenses/by/3.0/us/)
- * ============================================================ */
-
-function hasClass(ele,cls) {
-	return !!ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
-}
-
-function addClass(ele,cls) {
-	if (!hasClass(ele,cls)) ele.className += " "+cls;
-}
-
-function removeClass(ele,cls) {
-	if (hasClass(ele,cls)) {
-		var reg = new RegExp('(\\s+|^)'+cls+'(\\s+|$)');
-		ele.className=ele.className.replace(reg,' ');
-	}
-}
-
-/* ============================================================ */
-
-var sites = [
-	{
-		url: "allrecipes.com",
-		img: "all-recipes.jpg"
-	},{
-		url: "biscuitsandsuch.com",
-		img: "biscuits-and-such.jpg",
-		status: "like"
-	},{
-		url: "bonappetit.com",
-		img: "bon-appetit.jpg",
-		status: "like"
-	},{
-		url: "chowhound.com",
-		img: "chowhound.jpg",
-		status: "hate"
-	},{
-		url: "cookinglight.com",
-		img: "cooking-light.jpg"
-	},{
-		url: "cooks.com",
-		img: "cooks.jpg",
-		status: "hate"
-	},{
-		url: "damndelicious.net",
-		img: "damn-delicious.jpg"
-	},{
-		url: "delish.com",
-		img: "delish.jpg"
-	},{
-		url: "dishoom.com",
-		img: "dishoom.jpg"
-	},{
-		url: "eater.com",
-		img: "eater.jpg",
-		status: "hate"
-	},{
-		url: "epicurious.com",
-		img: "epicurious.jpg",
-		status: "like"
-	},{
-		url: "food52.com",
-		img: "food-52.jpg",
-		status: "like"
-	},{
-		url: "foodandwine.com",
-		img: "food-and-wine.jpg"
-	},{
-		url: "food.com",
-		img: "food-com.jpg",
-		status: "hate"
-	},{
-		url: "luckypeach.com",
-		img: "lucky-peach.jpg",
-		status: "like"
-	},{
-		url: "marthastewart.com",
-		img: "martha-stewart.jpg"
-	},{
-		url: "munchies.vice.com",
-		img: "munchies.jpg",
-		status: "like"
-	},{
-		url: "myrecipes.com",
-		img: "my-recipes.jpg"
-	},{
-		url: "food.nationalgeographic.com",
-		img: "nat-geo-food.jpg"
-	},{
-		url: "cooking.nytimes.com",
-		img: "ny-times-cooking.jpg",
-		status: "like"
-	},{
-		url: "oola.com",
-		img: "oola.jpg",
-		status: "like"
-	},{
-		url: "simplyrecipes.com",
-		img: "simply-recipes.jpg"
-	},{
-		url: "skinnytaste.com",
-		img: "skinny-taste.jpg"
-	},{
-		url: "spoonuniversity.com",
-		img: "spoon-university.jpg"
-	},{
-		url: "tasteofhome.com",
-		img: "taste-of-home.jpg"
-	},{
-		url: "thekitchn.com",
-		img: "the-kitchn.jpg",
-		status: "like"
-	},{
-		url: "yummly.com",
-		img: "yummly.jpg"
-	}
-];
-
-var list = document.getElementById("site-list");
-var imageWrap = document.getElementById("image-wrap");
-var imageList = [];
-
-function setTextOf(ele, to) {
-	if("textContent" in ele) {ele.textContent = to;
-	} else if("innerText" in ele) {ele.innerText = to;}
-}
-
-function makeList() {
-	for(var i = 0; i < sites.length; i++) {
-		var li = document.createElement("li");
-		li.className = "site-name";
-		li.setAttribute("data-index", i);
-		if(sites[i].status) {
-			if(sites[i].status == "like") {li.className += " like";}
-			if(sites[i].status == "hate") {li.className += " hate";}
-		}
-		var a = document.createElement("a");
-		setTextOf(a, sites[i].url);
-		a.setAttribute("href", "http://" + sites[i].url);
-		a.setAttribute("target", "_blank");
-
-		(function(){
-			li.addEventListener("mouseover",function(e){
-				window.scrollTo(0,0);
-				var tl = e.target;
-				if(!hasClass(tl,"site-name")) {tl = tl.parentNode;}
-				var nim = document.getElementsByClassName("show");
-				if(nim.length > 0) {
-					for(var k = 0; k < nim.length; k++) {
-						removeClass(nim[k], "show");
-					}
-				}
-				var indx = parseInt(tl.getAttribute("data-index"));
-				addClass(imageList[indx], "show");
-				console.log(nim);
-
-				var ntl = document.getElementsByClassName("selected");
-				if(ntl.length > 0) {
-					for(var l=0; l<ntl.length; l++) {
-						removeClass(ntl[l], "selected");
-					}
-				}
-				addClass(tl, "selected");
-			});
-		})();
-
-		li.appendChild(a);
-		list.appendChild(li);
-
-		var img = document.createElement("img");
-		img.setAttribute("src", "images/" + sites[i].img);
-		img.setAttribute("alt", sites[i].url);
-		img.className = "page-image";
-		img.id = sites[i].img.replace(".","-");
-		imageWrap.appendChild(img);
-	}
-}
-makeList();
-
-window.addEventListener("load", function(){
-	document.getElementById("loading").style.display = "none";
-	imageList = document.getElementsByClassName("page-image");
-	console.log(imageList);
-});
-
+// window.addEventListener("load", function(){
+// 	window.setTimeout(function(){
+// 		window.location = "http://timaikens.github.io/se-homepage-redesign/competitors/";
+// 	},2000);
+// });
 </script>
 </body>
 </html>
