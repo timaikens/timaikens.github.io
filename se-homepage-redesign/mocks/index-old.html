@@ -60,13 +60,7 @@ h1, h2 {
 	font-weight:bold;
 	font-size:2em;
 	color:#F0544F;
-	/*margin-bottom: 0.1em;*/
-}
-
-a.desk-link {
-	font-family:'Montserrat', sans-serif;
-	font-weight:bold;
-	color:#F0544F;
+	margin-bottom: 0.1em;
 }
 
 h1 {
@@ -101,8 +95,8 @@ a, span, .site-name.selected:before {
 a:before, a:after {
 	content:"";
 	position:absolute;
-	bottom:-0.23em;
-	height:4px;
+	bottom:-0.13em;
+	height:2px;
 	width:0;
 	background-color:#F0544F;
 	-webkit-transition-duration:inherit;
@@ -262,61 +256,6 @@ iframe {
 	margin-top: 1em;
 }
 
-#tablet-frame, #mobile-frame {
-	position: relative;
-	display: inline-block;
-	/*margin-top: 20px;*/
-	text-align: center;
-}
-
-#tablet-frame:after, #mobile-frame:after {
-	content: '';
-	display: block;
-	/*margin-top: 20px;*/
-	height: 40px;
-	width: 40px;
-	border: 2px solid #3A3335;
-	border-radius: 20px;
-	position: absolute;
-	left: 50%;
-	bottom: 10px;
-	transform: translateX(-50%);
-}
-
-#tablet-frame, #mobile-frame, .frame-inner {
-	border: 2px solid #3A3335;
-}
-
-#tablet-frame {
-	border-radius: 40px;
-	padding: 60px 20px;
-}
-
-#mobile-frame {
-	border-radius: 20px;
-	padding: 40px 10px 60px;
-}
-
-.frame-inner {
-	overflow-y: scroll;
-}
-
-.frame-inner img {
-	display: block;
-	width: 100%;
-	height: auto;
-}
-
-#tablet-frame .frame-inner {
-	width: calc(768px * 0.75);
-	height: calc(1024px * 0.75);
-}
-
-#mobile-frame .frame-inner {
-	width: calc(375px * 0.75);
-	height: calc(667px * 0.75);
-}
-
 </style>
 	
 </head>
@@ -324,16 +263,8 @@ iframe {
 
 <div class="centering">
 
-	<h2><a href="/desk-mock/" class="td3 desk-link">Desktop Size &nbsp;&raquo;</a></h2>
-	<div style="float: left;margin-right: 100px">
-		<h2>Tablet</h2>
-		<div id="tablet-frame"><div class="frame-inner"><img src="images/se-mock-tablet.jpg" /></div></div>
-	</div>
-	<div style="float: left;">
-		<h2>Mobile</h2>
-		<div id="mobile-frame"><div class="frame-inner"><img src="images/se-mock-mobile.jpg" /></div></div>
-	</div>
-<!--
+	<h2>Working Mock &nbsp;&raquo;</h2>
+
 	<ul class="site-list"><h2>PDF Mock-Ups:</h2>
 		
 		<li class="site-name">
@@ -353,14 +284,18 @@ iframe {
 			</ul>
 		</li>
 	</ul>
-	<ul class="site-list"><h2>Animations</h2>
+	<ul class="site-list"><h2>Animations</h2><!-- <h3>Best viewed in QuickTime with <code>View > Loop</code> turned on (shortcut: <code>&#8997;&#8984;L</code>)</h3> -->
+		
+		<!-- <li class="site-name"><p><span>&#8594; </span><a href="anim/carousel-anim.mov">Carousel Animation (.mov)</a></p></li> -->
+		<!-- <li class="site-name"><p><span>&#8594; </span><a href="https://vimeo.com/165056199" target="_blank">Carousel Animation (.mov)</a></p></li> -->
 		<li class="site-name">
 			<p>SE Homepage Carousel Animation &ndash; <a href="https://vimeo.com/165056199">Permalink</a></p>
 			<iframe src="https://player.vimeo.com/video/165056199?autoplay=1&loop=1" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 		</li>
+
 	</ul>
 </div>
--->
+
 <script></script>
 </body>
 </html>

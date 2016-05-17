@@ -60,13 +60,7 @@ h1, h2 {
 	font-weight:bold;
 	font-size:2em;
 	color:#F0544F;
-	/*margin-bottom: 0.1em;*/
-}
-
-a.desk-link {
-	font-family:'Montserrat', sans-serif;
-	font-weight:bold;
-	color:#F0544F;
+	margin-bottom: 0.1em;
 }
 
 h1 {
@@ -101,8 +95,8 @@ a, span, .site-name.selected:before {
 a:before, a:after {
 	content:"";
 	position:absolute;
-	bottom:-0.23em;
-	height:4px;
+	bottom:-0.13em;
+	height:2px;
 	width:0;
 	background-color:#F0544F;
 	-webkit-transition-duration:inherit;
@@ -263,45 +257,29 @@ iframe {
 }
 
 #tablet-frame, #mobile-frame {
-	position: relative;
 	display: inline-block;
-	/*margin-top: 20px;*/
-	text-align: center;
-}
-
-#tablet-frame:after, #mobile-frame:after {
-	content: '';
-	display: block;
-	/*margin-top: 20px;*/
-	height: 40px;
-	width: 40px;
-	border: 2px solid #3A3335;
-	border-radius: 20px;
-	position: absolute;
-	left: 50%;
-	bottom: 10px;
-	transform: translateX(-50%);
+	margin-top: 40px;
 }
 
 #tablet-frame, #mobile-frame, .frame-inner {
-	border: 2px solid #3A3335;
+	border: 3px solid #3A3335;
 }
 
 #tablet-frame {
 	border-radius: 40px;
-	padding: 60px 20px;
+	padding: 60px;
 }
 
 #mobile-frame {
 	border-radius: 20px;
-	padding: 40px 10px 60px;
+	padding: 40px 20px;
 }
 
 .frame-inner {
 	overflow-y: scroll;
 }
 
-.frame-inner img {
+img {
 	display: block;
 	width: 100%;
 	height: auto;
@@ -322,45 +300,9 @@ iframe {
 </head>
 <body>
 
-<div class="centering">
+	<!-- <a href="../"><h2>&laquo;&nbsp; Back</h2></a> -->
 
-	<h2><a href="/desk-mock/" class="td3 desk-link">Desktop Size &nbsp;&raquo;</a></h2>
-	<div style="float: left;margin-right: 100px">
-		<h2>Tablet</h2>
-		<div id="tablet-frame"><div class="frame-inner"><img src="images/se-mock-tablet.jpg" /></div></div>
-	</div>
-	<div style="float: left;">
-		<h2>Mobile</h2>
-		<div id="mobile-frame"><div class="frame-inner"><img src="images/se-mock-mobile.jpg" /></div></div>
-	</div>
-<!--
-	<ul class="site-list"><h2>PDF Mock-Ups:</h2>
-		
-		<li class="site-name">
-			<p>A few ideas for above the fold. The first two are basically full screen, with a slightly modified nav bar at the top and the logo overlapping the featured panel. Mock-up 1 is a carousel (also see animation below). Versions 3 and 4 are more traditional and have gutters between elements. These would not be full-screen, but some set height based on screen width. Spacing/size on any can be adjusted, and any styles mixed and matched.</p>
-			<p>Ideas for below the fold (new format):</p>
-			<ul class="site-list indented">
-				<li class="site-name style-two"><span>&#8594; </span><a href="pdfs/hp-redesign-above-fold-1.pdf">Idea 1 &ndash; Full-screen carousel</a></li>
-				<li class="site-name style-two"><span>&#8594; </span><a href="pdfs/hp-redesign-above-fold-2.pdf">Idea 2 &ndash; Full-screen with smaller on side</a></li>
-				<li class="site-name style-two"><span>&#8594; </span><a href="pdfs/hp-redesign-above-fold-3.pdf">Idea 3 &ndash; Traditional with overlaid text</a></li>
-				<li class="site-name style-two"><span>&#8594; </span><a href="pdfs/hp-redesign-above-fold-4.pdf">Idea 4 &ndash; Traditional with side text</a></li>
-			</ul>
-		</li>	
-		<li class="site-name">
-			<p>For below the featured section, I was thinking we'd stick with one of the few blockpost formats we currently have in place. Maybe with a slight visual update.</p>
-			<ul class="site-list indented">
-				<li class="site-name style-two"><span>&#8594; </span><a href="pdfs/hp-redesign-below-fold.pdf">Ideas for below the fold (existing blockpost format)</a></li>
-			</ul>
-		</li>
-	</ul>
-	<ul class="site-list"><h2>Animations</h2>
-		<li class="site-name">
-			<p>SE Homepage Carousel Animation &ndash; <a href="https://vimeo.com/165056199">Permalink</a></p>
-			<iframe src="https://player.vimeo.com/video/165056199?autoplay=1&loop=1" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-		</li>
-	</ul>
-</div>
--->
+	<img src="../images/se-mock-desk.jpg" />
 <script></script>
 </body>
 </html>
