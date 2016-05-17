@@ -319,6 +319,17 @@ iframe {
 	height: calc(667px * 0.75);
 }
 
+.version-switch {
+	/*font-size: 2em;*/
+	font-weight: normal;
+	margin: 0 10px;
+	cursor: pointer;
+}
+
+#tv1, #mv1 {
+	margin-left: 40px;
+}
+
 </style>
 	
 </head>
@@ -328,13 +339,43 @@ iframe {
 
 	<h2><a href="desk-mock/" class="td3 desk-link">Desktop Size &nbsp;&raquo;</a></h2>
 	<div style="float: left;margin-right: 100px">
-		<h2>Tablet</h2>
-		<div id="tablet-frame"><div class="frame-inner"><img src="images/se-mock-tablet.jpg" /></div></div>
+		<h2>Tablet<a id="tv1" class="version-switch td3">v1</a><a id="tv2" class="version-switch td3">v2</a></h2>
+		<div id="tablet-frame"><div class="frame-inner"><img id="t-image" src="images/se-mock-tablet.jpg" /></div></div>
 	</div>
 	<div style="float: left;">
-		<h2>Mobile</h2>
-		<div id="mobile-frame"><div class="frame-inner"><img src="images/se-mock-mobile.jpg" /></div></div>
+		<h2>Mobile<a id="mv1" class="version-switch td3">v1</a><a id="mv2" class="version-switch td3">v2</a></h2>
+		<div id="mobile-frame"><div class="frame-inner"><img id="m-image" src="images/se-mock-mobile.jpg" /></div></div>
 	</div>
+
+<script>
+	
+var versionObj = {
+	"tv1": "se-mock-tablet.jpg",
+	"tv2": "se-mock-tablet-2.jpg",
+	"mv1": "se-mock-mobile.jpg",
+	"mv2": "se-mock-mobile-2.jpg"
+};
+
+var vs = document.getElementsByClassName("version-switch"),
+		tim = document.getElementById("t-image"),
+		mim = document.getElementById("m-image");
+
+function workIt(event) {
+	var t = event.target,
+	    tID = t.id,
+			imageURL = "images/" + versionObj[tID],
+			img;
+	if(tID == "tv1" || tID == "tv2") {img = tim;} else {img = mim;}
+	img.setAttribute("src", imageURL);
+}
+
+(function(){
+	for(var i=0;i<vs.length;i++) {
+		vs[i].addEventListener("click", workIt);
+	}
+})();
+
+</script>
 <!--
 	<ul class="site-list"><h2>PDF Mock-Ups:</h2>
 		
@@ -363,6 +404,5 @@ iframe {
 	</ul>
 </div>
 -->
-<script></script>
 </body>
 </html>
