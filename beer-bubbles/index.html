@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+
+html, body {margin:0;padding:0;}
+
+div {background: linear-gradient(0deg, #F48720, #EFBE35);}
+
+canvas {
+	position:relative;
+	display:block;
+	/*top:25px;*/
+	margin:0 auto;
+	/*width: 100%;*/
+}
+
+</style>
+
+</head>
+<body>
+
+<div><canvas id="bubbling-bubbles" width="1400" height="600"></canvas></div>
+
+<script>
+
+var canvas = document.getElementById("bubbling-bubbles"),
+cx = canvas.getContext("2d"),
+w = canvas.width,
+h = canvas.height,
+a = w/2,
+b = h/2,
+bubbles = [],
+numBubbles = w*h/3000;
+
+function Bubble() {
+	this.r = Math.round(Math.random()*3)+4;
+	this.clr = "rgba(255,255,255,0.3)";
+	this.a = Math.round(Math.random()*3)/4;
+	this.w = Math.PI/30;
+	this.x = Math.round(Math.random()*w);
+	this.y = Math.round(Math.random()*h);
+	this.v = Math.ceil(Math.random()*3+2)/2;
+}
+
+function rise() {
+	cx.clearRect(0, 0, w, h);
+
+	for(var i = 0; i < numBubbles; i++) {
+		var bub = bubbles[i];
+
+		cx.fillStyle = bub.clr;
+
+		cx.beginPath();
+		cx.arc(bub.x, bub.y, bub.r, 0, 2*Math.PI);
+		cx.fill();
+		cx.closePath();
+
+		bub.y-=bub.v;if(bub.y<=-bub.r){bub.y=h+bub.r;bub.x=Math.round(Math.random()*w);}
+		bub.x+=bub.a*Math.sin(bub.w*bub.y);
+	}
+}
+
+window.rAF = (function(){
+	return	window.requestAnimationFrame ||
+					window.webkitRequestAnimationFrame ||
+					window.mozRequestAnimationFrame ||
+					function( callback ){window.setTimeout(callback, 1000 / 60);};
+})();
+
+(function carbonate() {
+	for(var j = 0; j < numBubbles; j++) {
+		bubbles.push(new Bubble);
+	}
+})();
+
+(function animate() {
+	rAF(animate);
+	rise();
+})();
+
+</script>
+</body>
+</html>
