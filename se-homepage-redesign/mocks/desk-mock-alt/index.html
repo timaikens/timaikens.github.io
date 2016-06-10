@@ -60,13 +60,7 @@ h1, h2 {
 	font-weight:bold;
 	font-size:2em;
 	color:#F0544F;
-	/*margin-bottom: 0.1em;*/
-}
-
-a.desk-link {
-	font-family:'Montserrat', sans-serif;
-	font-weight:bold;
-	color:#F0544F;
+	margin-bottom: 0.1em;
 }
 
 h1 {
@@ -101,8 +95,8 @@ a, span, .site-name.selected:before {
 a:before, a:after {
 	content:"";
 	position:absolute;
-	bottom:-0.23em;
-	height:4px;
+	bottom:-0.13em;
+	height:2px;
 	width:0;
 	background-color:#F0544F;
 	-webkit-transition-duration:inherit;
@@ -263,47 +257,29 @@ iframe {
 }
 
 #tablet-frame, #mobile-frame {
-	position: relative;
 	display: inline-block;
-	/*margin-top: 20px;*/
-	text-align: center;
-	background-color: #EFECE5;
-}
-
-#tablet-frame:after, #mobile-frame:after {
-	content: '';
-	display: block;
-	/*margin-top: 20px;*/
-	height: 40px;
-	width: 40px;
-	border: 2px solid #3A3335;
-	border-radius: 20px;
-	position: absolute;
-	left: 50%;
-	bottom: 10px;
-	transform: translateX(-50%);
-	background-color: #FFFFF5;
+	margin-top: 40px;
 }
 
 #tablet-frame, #mobile-frame, .frame-inner {
-	border: 2px solid #3A3335;
+	border: 3px solid #3A3335;
 }
 
 #tablet-frame {
 	border-radius: 40px;
-	padding: 60px 20px;
+	padding: 60px;
 }
 
 #mobile-frame {
 	border-radius: 20px;
-	padding: 40px 10px 60px;
+	padding: 40px 20px;
 }
 
 .frame-inner {
 	overflow-y: scroll;
 }
 
-.frame-inner img {
+img {
 	display: block;
 	width: 100%;
 	height: auto;
@@ -319,37 +295,14 @@ iframe {
 	height: calc(667px * 0.75);
 }
 
-.version-switch {
-	/*font-size: 2em;*/
-	font-weight: normal;
-	margin: 0 10px;
-	cursor: pointer;
-}
-
-#tv1, #mv1 {
-	margin-left: 40px;
-}
-
 </style>
 	
 </head>
 <body>
 
-<div class="centering">
+	<!-- <a href="../"><h2>&laquo;&nbsp; Back</h2></a> -->
 
-	<h2><a href="desk-mock/" class="td3 desk-link">Desktop Size &nbsp;&raquo;</a></h2>
-	<h2><a href="desk-mock-alt/" class="td3 desk-link">Desktop Size (alt) &nbsp;&raquo;</a></h2>
-	<div style="float: left;margin-right: 100px">
-		<h2>Tablet</h2>
-		<div id="tablet-frame"><div class="frame-inner"><img id="t-image" src="images/se-mock-tablet.jpg" /></div></div>
-	</div>
-	<div style="float: left;">
-		<h2>Mobile</h2>
-		<div id="mobile-frame"><div class="frame-inner"><img id="m-image" src="images/se-mock-mobile.jpg" /></div></div>
-	</div>
-
-</div>
-
+	<img src="../images/se-mock-desk-alt.jpg" />
 <script></script>
 </body>
 </html>

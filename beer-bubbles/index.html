@@ -32,7 +32,7 @@ h = canvas.height,
 a = w/2,
 b = h/2,
 bubbles = [],
-numBubbles = w*h/3000;
+numBubbles = Math.round(w*h/3000);
 
 function Bubble() {
 	this.r = Math.round(Math.random()*3)+4;
